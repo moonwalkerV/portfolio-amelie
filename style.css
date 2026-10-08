@@ -324,3 +324,5 @@ footer{background:var(--pink);color:#5a5162;text-align:center;padding:30px 0 50p
 .bio-photo .sign{z-index:2;text-shadow:0 2px 12px rgba(255,255,255,.7);}
 .soon{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--hot);color:#fff;padding:5px 11px;border-radius:999px;vertical-align:middle;margin-left:10px;}
 a.work-card{display:block;text-decoration:none;color:inherit;}
+.handle-link{color:var(--hot);font-size:13px;font-weight:600;text-decoration:none;}
+.handle-link:hover{text-decoration:underline;}
