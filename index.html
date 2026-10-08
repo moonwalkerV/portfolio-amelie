@@ -12,86 +12,103 @@
 </head>
 <body>
 
-<div class="nav-wrap">
-  <nav class="pill">
-    <span class="nav-logo">amélie<sup>✦</sup></span>
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
+<!-- MENU : caché dans le hero, apparaît au défilement -->
+<nav class="pill" id="nav" data-theme="dark" aria-label="Navigation principale">
+  <a class="nav-logo" href="#top">amélie<sup>✦</sup></a>
+  <div class="nav-links">
+    <a href="#work">Projets</a>
+    <a href="#about">À propos</a>
+  </div>
+  <a href="#contact" class="nav-btn"><span class="dot"></span>Me contacter</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top" data-nav="dark">
+  <span class="bg-word w1" aria-hidden="true">MARKETING</span>
+  <span class="bg-word w2" aria-hidden="true">STRATÉGIE</span>
+  <span class="bg-word w3" aria-hidden="true">CRÉATIF</span>
+  <span class="bg-word w4" aria-hidden="true">PROJETS</span>
+
+  <div class="rig" id="rig">
+    <div class="strap"></div>
+    <div class="clasp"><span class="ring"></span></div>
+
+    <div class="badge-scene">
+      <div class="badge3d" id="badge" tabindex="0" role="button" aria-label="Badge d'Amélie : bouger la souris ou cliquer pour le retourner">
+
+        <!-- FACE AVANT -->
+        <div class="face front">
+          <span class="slot"></span>
+          <div class="inner">
+            <div class="f-photo">
+              <picture><source srcset="assets/amelie.webp" type="image/webp"><img src="assets/amelie.jpg" alt="Amélie Philippon"></picture>
+            </div>
+            <div class="f-info">
+              <div>
+                <div class="f-name">AMÉLIE</div>
+                <div class="f-role">Cheffe de projet<br>Marketing · IA</div>
+              </div>
+              <div class="f-sign">Amélie</div>
+            </div>
+            <div class="f-foot">
+              <span class="f-pill"><i></i>Disponible en freelance</span>
+              <div class="barcode"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FACE ARRIÈRE -->
+        <div class="face back">
+          <span class="slot"></span>
+          <div class="inner">
+            <h4>Ce que je fais</h4>
+            <div class="b-row">
+              <div class="chip c1"><svg viewBox="0 0 24 24" fill="none"><path d="M3 20c1.8-4 5-6 9-6s7.2 2 9 6" stroke="#c23b78" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="4" stroke="#c23b78" stroke-width="2"/></svg></div>
+              <div><b>Stratège</b><span>Marketing &amp; positionnement de marque</span></div>
+            </div>
+            <div class="b-row">
+              <div class="chip c2"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#5a3fc0" stroke-width="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#5a3fc0" stroke-width="2"/></svg></div>
+              <div><b>Cheffe de projet</b><span>Cadrage, pilotage, coordination</span></div>
+            </div>
+            <div class="b-row">
+              <div class="chip c3"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="#b5660f" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="#b5660f" stroke-width="2"/></svg></div>
+              <div><b>Créative &amp; IA</b><span>Design, contenu, outils IA</span></div>
+            </div>
+            <p class="b-sign">Des idées qui prennent vie</p>
+            <div class="b-foot"><span>@AMELIEPLP</span><div class="barcode"></div></div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <a href="#contact" class="nav-btn"><span class="dot"></span>Me contacter</a>
-  </nav>
-</div>
-
-<section class="hero">
-  <span class="bg-word w1">MARKETING</span>
-  <span class="bg-word w2">STRATÉGIE</span>
-  <span class="bg-word w3">CRÉATIF</span>
-  <span class="bg-word w4">PROJETS</span>
-
-  <div class="badge-glow"></div>
-  <div class="badge-swing-outer">
-   <div class="badge-swing">
-    <div class="lanyard"></div>
-    <div class="clip"></div>
-    <div class="badge">
-      <h4>What I do</h4>
-
-      <div class="badge-row">
-        <div class="chip c1"><svg viewBox="0 0 24 24" fill="none"><path d="M3 20c1.8-4 5-6 9-6s7.2 2 9 6" stroke="#c23b78" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="4" stroke="#c23b78" stroke-width="2"/></svg></div>
-        <div>
-          <b>Stratège</b>
-          <span>Marketing &amp; positionnement de marque</span>
-        </div>
-      </div>
-
-      <div class="badge-row">
-        <div class="chip c2"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#5a3fc0" stroke-width="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#5a3fc0" stroke-width="2"/></svg></div>
-        <div>
-          <b>Cheffe de projet</b>
-          <span>Cadrage, pilotage, coordination</span>
-        </div>
-      </div>
-
-      <div class="badge-row">
-        <div class="chip c3"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="#b5660f" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="#b5660f" stroke-width="2"/></svg></div>
-        <div>
-          <b>Créative &amp; IA</b>
-          <span>Design, contenu, outils IA</span>
-        </div>
-      </div>
-
-      <p class="badge-sign">Des idées qui prennent vie ✦</p>
-      <div class="badge-foot">
-        <span>@AMELIEPLP</span>
-        <div class="barcode" id="barcode"></div>
-      </div>
-    </div>
-   </div>
   </div>
 
-  <div class="scroll-cue"><span class="line"></span>Scroll</div>
+  <div class="typer" aria-live="off"><span id="typer"></span><i class="caret"></i></div>
+  <div class="scroll-hint"><span>Défiler</span><i></i></div>
 </section>
 
-<section class="bio">
+<!-- BIO (rose) -->
+<section class="bio" data-nav="pink">
   <div class="wrap bio-grid">
-    <div class="bio-photo reveal">
-      <picture><source srcset="assets/amelie.webp" type="image/webp"><img src="assets/amelie.jpg" alt="Amélie Philippon" class="photo-img" loading="lazy"></picture>
-      <span class="sign">hi, I'm Amélie</span>
-    </div>
-    <div class="bio-text reveal">
-      <span class="eyebrow">Disponible pour de nouveaux projets</span>
-      <h1>Je transforme le chaos marketing en projets qui avancent vraiment.</h1>
-      <p>Responsable marketing &amp; cheffe de projet pendant 4 ans, je combine aujourd'hui stratégie, gestion de projet, design et outils IA pour accompagner des marques et des porteurs de projet de l'idée à la réalisation.</p>
-      <div class="bio-ctas">
-        <a href="#work" class="btn-dark">Voir mes projets ✦</a>
-        <a href="#about" class="btn-outline">En savoir plus</a>
+    <div class="bio-visual reveal-blur">
+      <div class="bio-photo">
+        <picture><source srcset="assets/amelie.webp" type="image/webp"><img src="assets/amelie.jpg" alt="Amélie Philippon" loading="lazy"></picture>
       </div>
+      <span class="bio-sign">salut, moi c'est Amélie</span>
+      <div class="bio-device"><img src="assets/projets/spotnow.webp" alt="Aperçu du site Spotnow" loading="lazy"></div>
+    </div>
+    <div class="bio-text">
+      <h1 class="type-wrap" data-type>
+        <span class="ghost">Je transforme des idées en projets qui avancent vraiment.</span>
+        <span class="live" aria-hidden="true"></span>
+      </h1>
+      <p class="reveal">Responsable marketing et cheffe de projet pendant 4 ans, je combine aujourd'hui stratégie, gestion de projet, design et outils IA pour accompagner des marques et des porteurs de projet de l'idée à la réalisation.</p>
     </div>
   </div>
 </section>
 
-<section class="whatido">
+<!-- CE QUE JE FAIS (sombre) -->
+<section class="whatido" data-nav="dark">
   <div class="wrap">
     <span class="section-tag reveal">— Ce que je fais</span>
 
@@ -121,10 +138,10 @@
 
     <div class="do-row reveal">
       <div class="do-left">
-        <div class="chip" style="background:#cdeede;"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="#1d8a5e" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="#1d8a5e" stroke-width="2"/></svg></div>
+        <div class="chip c4"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="#1d8a5e" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="#1d8a5e" stroke-width="2"/></svg></div>
         <h3>IA appliquée</h3>
       </div>
-      <p>Veille et intégration des outils IA dans les projets &amp; la création.</p>
+      <p>Veille et intégration des outils IA dans les projets et la création.</p>
     </div>
 
     <div class="do-row reveal">
@@ -138,76 +155,93 @@
     <div class="do-row reveal">
       <div class="do-left">
         <div class="chip c1"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="2" stroke="#c23b78" stroke-width="2"/><rect x="13" y="3" width="8" height="8" rx="2" stroke="#c23b78" stroke-width="2"/><rect x="3" y="13" width="18" height="8" rx="2" stroke="#c23b78" stroke-width="2"/></svg></div>
-        <h3>Templates de sites <span class="soon">Bientôt</span></h3>
+        <h3>Modèles de sites <span class="soon">Bientôt</span></h3>
       </div>
-      <p>Des templates prêts à l'emploi, conçus pour lancer son site rapidement.</p>
+      <p>Des modèles prêts à l'emploi, conçus pour lancer son site rapidement.</p>
     </div>
-
   </div>
 </section>
 
-<div class="marquee">
+<!-- CHIFFRES (rose) -->
+<section class="stats" data-nav="pink">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><b><span data-count="4">4</span>+</b><span>ans en marketing et gestion de projet</span></div>
+    <div class="stat reveal"><b><span data-count="4">4</span></b><span>projets en ligne</span></div>
+    <div class="stat reveal"><b>360°</b><span>stratégie, design et IA</span></div>
+  </div>
+</section>
+
+<!-- BANDE D'OUTILS (sombre, entre deux zones roses) -->
+<div class="marquee" data-nav="dark" aria-hidden="true">
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
-<section class="work" id="work">
-  <div class="wrap">
-    <div class="work-head reveal">
-      <span class="section-tag">— Sélection</span>
-      <h2>Projets récents</h2>
-      <p>Quelques projets menés ces dernières années, du cadrage stratégique à la mise en œuvre créative.</p>
-    </div>
-    <div class="work-grid">
-      <a class="work-card reveal" href="https://moonwalker-vision.vercel.app/" target="_blank" rel="noopener">
-        <div class="work-thumb t1">Moonwalker Vision</div>
-        <div class="meta"><div><span class="tag">Marque &amp; site web</span><h4>Moonwalker Vision</h4></div><div class="work-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="#1a1420" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      </a>
-      <a class="work-card reveal" href="https://camping-clairac.vercel.app/" target="_blank" rel="noopener">
-        <div class="work-thumb t2">Camping Clairac</div>
-        <div class="meta"><div><span class="tag">Refonte de site web</span><h4>Camping Clairac</h4></div><div class="work-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="#1a1420" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      </a>
-      <a class="work-card reveal" href="https://kalikana.com/accueil/" target="_blank" rel="noopener">
-        <div class="work-thumb t3">Kalikana</div>
-        <div class="meta"><div><span class="tag">Site web client</span><h4>Kalikana</h4></div><div class="work-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="#1a1420" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      </a>
-      <a class="work-card reveal" href="https://spotnow-lilac.vercel.app/" target="_blank" rel="noopener">
-        <div class="work-thumb t4">Spotnow</div>
-        <div class="meta"><div><span class="tag">Application événementielle</span><h4>Spotnow</h4></div><div class="work-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="#1a1420" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      </a>
-    </div>
+<!-- PROJETS (rose) -->
+<section class="work" id="work" data-nav="pink">
+  <div class="work-head reveal">
+    <h2>Projets sélectionnés</h2>
+    <p>Des sites d'abord, puis des applis. Tourisme, événementiel, e-commerce et création de marque.</p>
+  </div>
+
+  <div class="work-track" id="workTrack">
+    <a class="proj" href="https://moonwalker-vision.vercel.app/" target="_blank" rel="noopener">
+      <div class="proj-img"><img src="assets/projets/moonwalker.webp" alt="Page d'accueil du site Moonwalker Vision" loading="lazy" draggable="false"></div>
+      <div class="proj-meta"><b>Moonwalker Vision</b><span>Marque et site web</span></div>
+    </a>
+    <a class="proj" href="https://camping-clairac.vercel.app/" target="_blank" rel="noopener">
+      <div class="proj-img"><img src="assets/projets/camping.webp" alt="Page d'accueil du site Camping Clairac" loading="lazy" draggable="false"></div>
+      <div class="proj-meta"><b>Camping Clairac</b><span>Refonte de site web</span></div>
+    </a>
+    <a class="proj" href="https://kalikana.com/accueil/" target="_blank" rel="noopener">
+      <div class="proj-img"><img src="assets/projets/kalikana.webp" alt="Page d'accueil du site Kalikana" loading="lazy" draggable="false"></div>
+      <div class="proj-meta"><b>Kalikana</b><span>Site web client</span></div>
+    </a>
+    <a class="proj" href="https://spotnow-lilac.vercel.app/" target="_blank" rel="noopener">
+      <div class="proj-img"><img src="assets/projets/spotnow.webp" alt="Page d'accueil de l'application Spotnow" loading="lazy" draggable="false"></div>
+      <div class="proj-meta"><b>Spotnow</b><span>Application événementielle</span></div>
+    </a>
+  </div>
+
+  <div class="work-nav">
+    <button type="button" id="workPrev" aria-label="Projet précédent">←</button>
+    <button type="button" id="workNext" aria-label="Projet suivant">→</button>
   </div>
 </section>
 
-<section class="about" id="about">
+<!-- À PROPOS (sombre) -->
+<section class="about" id="about" data-nav="dark">
   <div class="wrap about-grid">
-    <div class="about-photo reveal"><picture><source srcset="assets/amelie.webp" type="image/webp"><img src="assets/amelie.jpg" alt="Amélie Philippon" class="photo-img" loading="lazy"></picture></div>
-    <div class="about-text reveal">
-      <span class="section-tag" style="color:var(--hot);font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;display:block;margin-bottom:18px;">— À propos</span>
-      <p class="lead">Je suis <b>Amélie</b>, stratège marketing, cheffe de projet et créative basée en France. Je transforme des idées encore floues en projets qui tiennent la route.</p>
-      <ul class="about-list">
-        <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.8C.8 8.6 2.4 5 6 5c2 0 3.3 1 4 2.2.7-1.2 2-2.2 4-2.2 3.6 0 5.2 3.6 3.5 7.2C19 16.65 12 21 12 21z" fill="#ff4f9e"/></svg>Piloter des projets du cadrage à la livraison</li>
-        <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.8C.8 8.6 2.4 5 6 5c2 0 3.3 1 4 2.2.7-1.2 2-2.2 4-2.2 3.6 0 5.2 3.6 3.5 7.2C19 16.65 12 21 12 21z" fill="#ff4f9e"/></svg>Tester les outils IA avant tout le monde</li>
-        <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.8C.8 8.6 2.4 5 6 5c2 0 3.3 1 4 2.2.7-1.2 2-2.2 4-2.2 3.6 0 5.2 3.6 3.5 7.2C19 16.65 12 21 12 21z" fill="#ff4f9e"/></svg>Créer des identités de marque qui ont du sens</li>
+    <div class="about-photo reveal-blur">
+      <picture><source srcset="assets/amelie.webp" type="image/webp"><img src="assets/amelie.jpg" alt="Amélie Philippon" loading="lazy"></picture>
+    </div>
+    <div class="about-text">
+      <h2 class="reveal">À propos</h2>
+      <p class="lead reveal">Je suis <b>Amélie</b>, stratège marketing, cheffe de projet et créative. Je transforme des idées encore floues en projets qui tiennent la route.</p>
+      <ul class="glass-list">
+        <li class="reveal"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.8C.8 8.6 2.4 5 6 5c2 0 3.3 1 4 2.2.7-1.2 2-2.2 4-2.2 3.6 0 5.2 3.6 3.5 7.2C19 16.65 12 21 12 21z" fill="#ff4f9e"/></svg>Piloter des projets du cadrage à la livraison</li>
+        <li class="reveal"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.8C.8 8.6 2.4 5 6 5c2 0 3.3 1 4 2.2.7-1.2 2-2.2 4-2.2 3.6 0 5.2 3.6 3.5 7.2C19 16.65 12 21 12 21z" fill="#ff4f9e"/></svg>Tester les outils IA avant tout le monde</li>
+        <li class="reveal"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.8C.8 8.6 2.4 5 6 5c2 0 3.3 1 4 2.2.7-1.2 2-2.2 4-2.2 3.6 0 5.2 3.6 3.5 7.2C19 16.65 12 21 12 21z" fill="#ff4f9e"/></svg>Créer des identités de marque qui ont du sens</li>
       </ul>
-      <span class="handle">@amelieplp</span> · <a class="handle-link" href="https://www.linkedin.com/in/am%C3%A9lie-philippon-a5b28523a/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <div class="chips reveal">
+        <span class="chip-pill">@amelieplp</span>
+        <a class="chip-pill" href="https://www.linkedin.com/in/am%C3%A9lie-philippon-a5b28523a/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="chip-pill" href="mailto:amelie.philippon@live.fr">amelie.philippon@live.fr</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="cta" id="contact">
+<!-- APPEL FINAL (rose) -->
+<section class="cta" id="contact" data-nav="pink">
   <div class="wrap">
-    <h2 class="reveal">Une idée en tête ?<br>Construisons-la.</h2>
+    <h2 class="reveal">Une idée&nbsp;?<br>Construisons&#8209;la.</h2>
     <div class="cta-btns reveal">
-      <a href="mailto:amelie.philippon@live.fr" class="btn-dark">Me contacter ✦</a>
-      <a href="mailto:amelie.philippon@live.fr" class="btn-outline">Demander un devis</a>
-      <a href="https://www.linkedin.com/in/am%C3%A9lie-philippon-a5b28523a/" target="_blank" rel="noopener" class="btn-outline">LinkedIn ↗</a>
+      <a href="mailto:amelie.philippon@live.fr" class="btn-dark">Me contacter <i>↗</i></a>
+      <a href="mailto:amelie.philippon@live.fr?subject=Demande%20de%20devis" class="btn-outline">Demander un devis <i>↗</i></a>
     </div>
+    <p class="copy">© 2026 Amélie Philippon</p>
   </div>
 </section>
-
-<footer>
-  <div class="wrap">Amélie Philippon — Portfolio · 2026</div>
-</footer>
 
 <script src="script.js"></script>
 </body>
