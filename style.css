@@ -68,24 +68,23 @@ body::before{
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;align-items:center;
   background:
-    radial-gradient(ellipse 560px 520px at 50% 62%, rgba(124,92,210,0.5), transparent 70%),
-    linear-gradient(180deg,#15112b 0%,#241a49 58%,#1a1434 100%);
+    radial-gradient(ellipse 900px 500px at 50% 0%, rgba(255,79,158,0.18), transparent 60%),
+    #1a1432;
 }
 .bg-word{
   position:absolute;z-index:1;
   font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:clamp(40px,8.2vw,116px);letter-spacing:-0.04em;line-height:1;
   white-space:nowrap;user-select:none;pointer-events:none;
-  background:linear-gradient(180deg,#ffffff 20%,#f3cfe3 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  color: rgba(246,239,248,0.07);
   opacity:0;
 }
-.bg-word.w1{top:25%;left:-3%;animation:wordL 1.2s cubic-bezier(.2,.8,.25,1) .5s forwards;}
-.bg-word.w2{top:34%;right:-5%;animation:wordR 1.2s cubic-bezier(.2,.8,.25,1) .65s forwards;}
-.bg-word.w3{top:66%;left:-2%;animation:wordL 1.2s cubic-bezier(.2,.8,.25,1) .8s forwards;}
-.bg-word.w4{top:75%;right:-3%;animation:wordR 1.2s cubic-bezier(.2,.8,.25,1) .95s forwards;}
-@keyframes wordL{from{opacity:0;transform:translateX(-80px);}to{opacity:.94;transform:none;}}
-@keyframes wordR{from{opacity:0;transform:translateX(80px);}to{opacity:.94;transform:none;}}
+.bg-word.w1{top:25%;left:-1%;animation:wordL 1.2s cubic-bezier(.2,.8,.25,1) .5s forwards;}
+.bg-word.w2{top:34%;right:3%;color: rgba(255,79,158,0.14);animation:wordR 1.2s cubic-bezier(.2,.8,.25,1) .65s forwards;}
+.bg-word.w3{top:66%;left:2%;color: rgba(255,79,158,0.14);animation:wordL 1.2s cubic-bezier(.2,.8,.25,1) .8s forwards;}
+.bg-word.w4{top:75%;right:2%;animation:wordR 1.2s cubic-bezier(.2,.8,.25,1) .95s forwards;}
+@keyframes wordL{from{opacity:0;transform:translateX(-80px);}to{opacity:1;transform:none;}}
+@keyframes wordR{from{opacity:0;transform:translateX(80px);}to{opacity:1;transform:none;}}
 
 /* --- attache + badge --- */
 .rig{
@@ -249,7 +248,7 @@ body::before{
 .type-wrap{position:relative;}
 .type-wrap .ghost{visibility:hidden;display:block;}
 .type-wrap .live{position:absolute;left:0;top:0;right:0;display:block;}
-.type-wrap .live.typing::after{content:'';display:inline-block;width:3px;height:.9em;background:currentColor;margin-left:4px;vertical-align:-0.08em;animation:blink 1s steps(1) infinite;}
+.type-wrap .live.typing::after{content:'';display:inline-block;width=3px;height=.9em;background:currentColor;margin-left:4px;vertical-align:-0.08em;animation:blink 1s steps(1) infinite;}
 
 /* ===== CE QUE JE FAIS ===== */
 .whatido{background:linear-gradient(180deg,#1a1434,#150f2c);padding:120px 0;}

@@ -1,0 +1,27 @@
+{
+  "name": "portfolio-amelie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moonwalkerV/portfolio-amelie.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/moonwalkerV/portfolio-amelie/issues"
+  },
+  "homepage": "https://github.com/moonwalkerV/portfolio-amelie#readme",
+  "devDependencies": {
+    "playwright": "^1.64.0"
+  },
+  "dependencies": {
+    "playwright-core": "^1.64.0"
+  }
+}
