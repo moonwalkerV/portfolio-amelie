@@ -10,6 +10,13 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  // ---------- Sections activables ----------
+  // SHOW_OFFERS : true = section « Mes formules » + lien « Offres » dans le menu ; false = bandeau de contact à la place.
+  var SHOW_OFFERS = false;
+  var setHidden = function (sel, hide) { $$(sel).forEach(function (el) { el.hidden = hide; }); };
+  setHidden('#offres, .nav-links a[href="#offres"]', !SHOW_OFFERS);
+  setHidden('.cta-band', SHOW_OFFERS);
+
   // ---------- Marquee d'outils ----------
   var tools = ['Figma', 'Canva', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro', 'Notion', 'Trello', 'ClickUp', 'Glide', 'Outils Google', 'Visual Studio Code', 'Outils IA'];
   var track = $('#marqueeTrack');
@@ -477,10 +484,11 @@
   // ---------- Contact : prise de rendez-vous ----------
   // Colle ici l'URL de réservation (Calendly, Cal.com…). Vide : le bouton ouvre un e-mail « Appel découverte ».
   var BOOKING_URL = '';
-  var bookBtn = $('#bookBtn');
-  if (bookBtn && BOOKING_URL) {
-    bookBtn.href = BOOKING_URL;
-    bookBtn.target = '_blank';
-    bookBtn.rel = 'noopener';
+  if (BOOKING_URL) {
+    $$('[data-book]').forEach(function (a) {
+      a.href = BOOKING_URL;
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
   }
 })();

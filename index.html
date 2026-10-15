@@ -29,7 +29,7 @@
   <a class="nav-logo" href="#top">amélie<sup>✦</sup></a>
   <div class="nav-links">
     <a href="#work">Projets</a>
-    <a href="#offres">Offres</a>
+    <a href="#offres" hidden>Offres</a>
     <a href="#about">À propos</a>
   </div>
   <a href="#contact" class="nav-btn"><span class="dot"></span>Me contacter</a>
@@ -176,7 +176,7 @@
 </section>
 
 <!-- OFFRES (sombre) -->
-<section class="offres" id="offres" data-nav="dark">
+<section class="offres" id="offres" data-nav="dark" hidden>
   <div class="wrap">
     <div class="offres-head reveal">
       <h2>Mes formules</h2>
@@ -250,6 +250,20 @@
     </article>
     </div>
     <div class="offres-cta reveal"><a href="#contact" class="btn-light">Discutons de votre projet <i>↗</i></a></div>
+  </div>
+</section>
+
+<!-- BANDEAU CONTACT (affiché à la place des offres tant que SHOW_OFFERS = false) -->
+<section class="cta-band" data-nav="dark" aria-label="Contact">
+  <div class="wrap cta-band-in">
+    <div class="cta-band-text reveal">
+      <h2>Un projet en tête&nbsp;? Parlons&#8209;en.</h2>
+      <p>Décrivez-moi votre idée, je vous réponds avec une proposition claire. Devis gratuit, sans engagement.</p>
+    </div>
+    <div class="cta-band-btns reveal">
+      <a href="mailto:amelie.philippon@live.fr?subject=Appel%20d%C3%A9couverte" class="btn-light" data-book>Réserver un appel gratuit de 20&nbsp;min <i>↗</i></a>
+      <a href="mailto:amelie.philippon@live.fr?subject=Demande%20de%20devis" class="btn-ghost">Demander un devis <i>↗</i></a>
+    </div>
   </div>
 </section>
 
@@ -333,7 +347,7 @@
   <div class="wrap">
     <h2 class="reveal">Une idée&nbsp;?<br>Construisons&#8209;la.</h2>
     <div class="cta-btns reveal">
-      <a href="mailto:amelie.philippon@live.fr?subject=Appel%20d%C3%A9couverte" class="btn-dark" id="bookBtn">Réserver un appel gratuit de 20&nbsp;min <i>↗</i></a>
+      <a href="mailto:amelie.philippon@live.fr?subject=Appel%20d%C3%A9couverte" class="btn-dark" id="bookBtn" data-book>Réserver un appel gratuit de 20&nbsp;min <i>↗</i></a>
       <a href="mailto:amelie.philippon@live.fr?subject=Demande%20de%20devis" class="btn-outline">Demander un devis <i>↗</i></a>
     </div>
     <p class="copy">© 2026 Amélie Philippon</p>
