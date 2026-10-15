@@ -512,7 +512,7 @@ a.chip-pill:hover{background:rgba(255,79,158,0.18);border-color:var(--hot);}
   background:radial-gradient(ellipse 900px 520px at 20% 100%,rgba(255,255,255,0.4),transparent 60%),linear-gradient(180deg,#f6cfe0,#f3c4db);
   color:var(--ink);padding:150px 0 40px;overflow:hidden;
 }
-.cta h2{font-size:clamp(44px,9.6vw,150px);font-weight:800;line-height:0.92;letter-spacing:-0.06em;margin-bottom:46px;}
+.cta h2{font-size:clamp(44px,9.6vw,120px);font-weight:800;line-height:0.92;letter-spacing:-0.06em;margin-bottom:46px;}
 .cta-btns{display:flex;gap:14px;flex-wrap:wrap;}
 @media (max-width:600px){.cta h2{font-size:min(44px,7.2vw);}} /* « Construisons‑la. » ne se coupe pas : le trait d'union est insécable */
 .btn-dark,.btn-outline{
