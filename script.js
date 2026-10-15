@@ -215,5 +215,64 @@
     var prev = $('#workPrev'), next = $('#workNext');
     if (prev) prev.addEventListener('click', function () { by(-1); });
     if (next) next.addEventListener('click', function () { by(1); });
+
+    // Survol : la carte visée se centre et s'agrandit (souris uniquement, hors mouvement réduit)
+    if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+      var cards = Array.prototype.slice.call(wt.querySelectorAll('.proj'));
+      var active = null, intent = null, autoScroll = false, settleT = null, hardT = null;
+      var lastX = -1, lastY = -1, anchorX = -1, anchorY = -1;
+
+      var setActive = function (card) {
+        active = card;
+        cards.forEach(function (c) { c.classList.toggle('is-active', c === card); });
+        wt.classList.toggle('has-focus', !!card);
+      };
+      var endAuto = function () {
+        clearTimeout(settleT); clearTimeout(hardT);
+        autoScroll = false;
+        anchorX = lastX; anchorY = lastY; // on attend un vrai mouvement avant de réagir à nouveau
+      };
+      var centerOn = function (card) {
+        var tr = wt.getBoundingClientRect(), cr = card.getBoundingClientRect();
+        var max = wt.scrollWidth - wt.clientWidth;
+        var target = Math.max(0, Math.min(max, wt.scrollLeft + (cr.left + cr.width / 2) - (tr.left + tr.width / 2)));
+        if (Math.abs(target - wt.scrollLeft) < 2) return;
+        autoScroll = true;
+        clearTimeout(hardT);
+        hardT = setTimeout(endAuto, 1200);
+        wt.scrollTo({ left: target, behavior: 'smooth' });
+      };
+
+      wt.addEventListener('scroll', function () {
+        if (!autoScroll) return;
+        clearTimeout(settleT);
+        settleT = setTimeout(endAuto, 120);
+      }, { passive: true });
+      wt.addEventListener('scrollend', function () { if (autoScroll) endAuto(); });
+
+      wt.addEventListener('pointermove', function (e) {
+        if (e.pointerType && e.pointerType !== 'mouse') return;
+        var moved2 = e.clientX !== lastX || e.clientY !== lastY;
+        lastX = e.clientX; lastY = e.clientY;
+        if (!moved2 || down || autoScroll) return; // ignore survols fantômes, glisser et défilement auto
+        if (anchorX >= 0 && Math.abs(e.clientX - anchorX) + Math.abs(e.clientY - anchorY) < 6) return;
+        anchorX = -1;
+        var card = e.target.closest ? e.target.closest('.proj') : null;
+        if (!card || card === active) { if (card === active) { clearTimeout(intent); intent = null; } return; }
+        clearTimeout(intent);
+        intent = setTimeout(function () {
+          intent = null;
+          if (autoScroll || down) return;
+          setActive(card);
+          centerOn(card);
+        }, 130);
+      });
+
+      wt.addEventListener('pointerleave', function () {
+        clearTimeout(intent); intent = null;
+        lastX = lastY = anchorX = anchorY = -1;
+        setActive(null);
+      });
+    }
   }
 })();
