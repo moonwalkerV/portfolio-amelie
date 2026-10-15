@@ -448,4 +448,20 @@
       if (isOpen && !modal.contains(e.target)) closeBtn.focus({ preventScroll: true });
     });
   }
+  // ---------- Offres : prix (modifiables ici, un objet par offre) ----------
+  var OFFERS = {
+    'vitrine-essentiel': { price: 'dès 990 € HT' },
+    'mini-identite':     { price: 'dès 590 € HT' },
+    'pack-lancement':    { price: 'dès 1 490 € HT' },
+    'vitrine-complete':  { price: 'dès 1 490 € HT' },
+    'suivi-mensuel':     { price: 'dès 39 € HT par mois' },
+    'gestion-de-projet': { price: 'Sur devis' }
+  };
+  $$('.offre[data-offer]').forEach(function (card) {
+    var o = OFFERS[card.getAttribute('data-offer')];
+    var el = card.querySelector('.offre-price');
+    if (!o || !el) return;
+    // espaces insécables : « 1 490 € HT » ne se coupe pas en fin de ligne
+    el.textContent = o.price.replace(/(\d) (?=\d)/g, '$1\u00a0').replace(/ (?=[€])/g, '\u00a0').replace(/€ HT/g, '€\u00a0HT');
+  });
 })();

@@ -277,6 +277,46 @@ body::before{
 .do-row p{color:rgba(247,240,248,0.55);font-size:14.5px;max-width:300px;text-align:right;line-height:1.5;}
 .soon{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--hot);color:#fff;padding:5px 11px;border-radius:999px;vertical-align:middle;margin-left:10px;}
 
+/* ===== OFFRES ===== */
+.offres{background:linear-gradient(180deg,#150f2c,#1a1434);padding:120px 0 110px;border-top:1px solid var(--line-dark);}
+.offres-head{text-align:center;margin-bottom:60px;}
+.offres-head h2{font-size:clamp(38px,6vw,76px);font-weight:800;letter-spacing:-0.05em;line-height:1;color:var(--cream);}
+.offres-head p{margin:16px auto 0;font-size:15px;color:rgba(247,240,248,0.66);max-width:560px;line-height:1.55;}
+.offres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;}
+.offre{
+  position:relative;display:flex;flex-direction:column;padding:30px 28px 28px;border-radius:26px;
+  background:linear-gradient(160deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.12);color:var(--cream);
+}
+.offre h3{font-size:clamp(21px,2vw,26px);font-weight:800;letter-spacing:-0.04em;line-height:1.1;}
+.offre-sum{margin-top:10px;font-size:14.5px;line-height:1.55;color:rgba(247,240,248,0.72);}
+.offre ul{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:10px;}
+.offre li{position:relative;padding-left:22px;font-size:14px;line-height:1.45;color:rgba(247,240,248,0.9);}
+.offre li::before{content:'';position:absolute;left:0;top:.5em;width:8px;height:8px;border-radius:50%;background:var(--hot);}
+.offre-price{
+  margin-top:auto;padding-top:20px;border-top:1px solid rgba(255,255,255,0.14);
+  font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(19px,1.8vw,23px);letter-spacing:-0.04em;color:var(--hot);
+}
+.offre--star{background:linear-gradient(160deg,#f6cfe0,#efb6cf);border-color:rgba(255,255,255,0.5);color:var(--ink);}
+.offre--star .offre-sum{color:#5d5266;}
+.offre--star li{color:var(--ink);}
+.offre--star li::before{background:var(--hot-deep);}
+.offre--star .offre-price{border-top-color:rgba(26,20,32,0.16);color:var(--ink);}
+.offre-tag{
+  align-self:flex-start;margin-bottom:14px;padding:6px 12px;border-radius:999px;
+  background:var(--ink);color:var(--cream);font-size:11px;font-weight:700;letter-spacing:.03em;
+}
+.offres-cta{margin-top:48px;text-align:center;}
+.btn-light{
+  display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:999px;background:var(--cream);color:var(--ink);
+  text-decoration:none;font-weight:700;font-size:15px;
+  transition:transform .25s cubic-bezier(.2,.8,.25,1),box-shadow .25s ease,background .25s ease,color .25s ease;
+}
+.btn-light:hover{transform:translateY(-3px);background:var(--hot);color:#fff;box-shadow:0 16px 30px -14px rgba(255,79,158,0.6);}
+.btn-light i{font-style:normal;font-size:13px;}
+@media (max-width:980px){.offres-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.offres{padding:90px 0 80px;}.offres-grid{grid-template-columns:1fr;}.offres-head{margin-bottom:40px;}}
+
 /* ===== CHIFFRES ===== */
 .stats{background:linear-gradient(180deg,#f4c6dc,#f6cfe0);color:var(--ink);padding:100px 0 90px;}
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
