@@ -451,7 +451,7 @@
   // ---------- Offres : prix (modifiables ici, un objet par offre) ----------
   // SHOW_PRICES : false = les offres « fixed » affichent « Devis gratuit sous 24 h » au lieu du prix.
   // price_mode : 'fixed' = prix affiché (selon SHOW_PRICES) ; 'quote' = « Sur devis », toujours.
-  var SHOW_PRICES = true;
+  var SHOW_PRICES = false;
   var QUOTE_LABEL = 'Sur devis';
   var HIDDEN_PRICE_LABEL = 'Devis gratuit sous 24 h';
   var OFFERS = {
