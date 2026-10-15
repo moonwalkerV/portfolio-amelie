@@ -441,6 +441,7 @@ a.chip-pill:hover{background:rgba(255,79,158,0.18);border-color:var(--hot);}
 }
 .cta h2{font-size:clamp(44px,9.6vw,150px);font-weight:800;line-height:0.92;letter-spacing:-0.06em;margin-bottom:46px;}
 .cta-btns{display:flex;gap:14px;flex-wrap:wrap;}
+@media (max-width:600px){.cta h2{font-size:min(44px,7.2vw);}} /* « Construisons‑la. » ne se coupe pas : le trait d'union est insécable */
 .btn-dark,.btn-outline{
   display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:999px;
   text-decoration:none;font-weight:700;font-size:15px;
