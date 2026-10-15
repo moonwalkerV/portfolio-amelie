@@ -485,14 +485,14 @@ body::before{
 .about{background:linear-gradient(180deg,#1a1434,#150f2c);padding:130px 0;}
 .about-title{font-size:clamp(32px,4.6vw,60px);font-weight:800;letter-spacing:-0.05em;line-height:1;margin-bottom:56px;}
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;}
-.why-card{display:flex;flex-direction:column;padding:30px 26px 26px;border-radius:22px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);}
-.why-card h3{font-size:clamp(20px,1.9vw,24px);font-weight:800;letter-spacing:-0.04em;line-height:1.15;color:var(--cream);margin-bottom:12px;}
-.why-card p{font-size:14.5px;line-height:1.65;color:rgba(247,240,248,0.74);margin-bottom:24px;}
-.why-proof{margin-top:auto;padding-top:16px;border-top:1px solid var(--line-dark);font-size:13px;font-weight:700;letter-spacing:.02em;line-height:1.4;color:var(--hot);}
+.why-card{display:flex;flex-direction:column;padding:30px 26px 28px;border-radius:22px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);}
+.why-card h3{font-size:clamp(20px,1.9vw,24px);font-weight:800;letter-spacing:-0.04em;line-height:1.15;color:var(--hot);margin-bottom:12px;}
+.why-card p{font-size:14.5px;line-height:1.65;color:rgba(247,240,248,0.74);}
+/* Tablette : les titres peuvent passer sur 2 lignes, on réserve la place pour que les phrases démarrent à la même hauteur */
+@media (min-width:761px) and (max-width:1060px){.why-card h3{min-height:2.3em;}}
 .why-grid .why-card:nth-child(2){transition-delay:.1s;}
 .why-grid .why-card:nth-child(3){transition-delay:.2s;}
 @media (prefers-reduced-motion:reduce){.why-grid .why-card{transition-delay:0s !important;}}
-@media (min-width:761px){.why-proof{min-height:54px;}} /* filets alignés d'une carte à l'autre, même si la preuve passe sur 2 lignes */
 @media (max-width:760px){.why-grid{grid-template-columns:1fr;}}
 .chips{display:flex;flex-wrap:wrap;gap:10px;}
 .chip-pill{
