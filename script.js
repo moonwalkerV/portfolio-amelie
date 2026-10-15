@@ -285,6 +285,7 @@
       status: 'Expérience',
       period: '2022 – 2026',
       role: 'Alternante responsable marketing (2 ans), puis cheffe de projet (2 ans)',
+      contextLabel: 'Contexte',
       context: 'Marque de produits au CBD, avec une boutique en ligne pour les particuliers et un espace réservé aux professionnels. Deux diplômes obtenus pendant cette alternance : responsable marketing, puis cheffe de projet.',
       did: [
         'Création du site web B2C et B2B (front-end et back-end)',
@@ -292,30 +293,26 @@
         'Gestion des réseaux sociaux',
         'Stratégie produit, planification et coordination des projets'
       ],
-      tools: ['Trello', 'ClickUp', 'Notion', 'Figma', 'Glide', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro', 'Canva', 'Google Analytics', 'Google Business Profile', 'Search Console']
+      // Outils : liste de groupes { group: 'Titre', items: [...] } ; le titre est facultatif
+      tools: [
+        { group: 'Gestion de projet', items: ['Trello', 'ClickUp', 'Notion'] },
+        { group: 'Design et vidéo', items: ['Figma', 'Canva', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'] },
+        { group: 'Web et no-code', items: ['Glide'] },
+        { group: 'IA', items: ['Midjourney', 'ChatGPT', 'Claude', 'Perplexity', 'Nano Banana'] },
+        { group: 'Marketing et analyse', items: ['Google Analytics', 'Google Business Profile', 'Search Console'] }
+      ]
     },
     camping: {
       title: 'Camping Clairac',
       status: 'Projet client',
-      context: 'Aire naturelle de 25 emplacements sur un ancien domaine viticole aux portes de Béziers. Pas de mobil-homes ni d\'animation, seulement la campagne et le temps de s\'y poser.',
+      period: 'Septembre – octobre 2026',
+      contextLabel: 'Mission',
+      context: 'Refondre entièrement le site de cette aire naturelle : mieux présenter le lieu et les séjours, faciliter la préparation de la venue et donner envie de réserver.',
       did: [
         'Refonte totale du site web (structure, contenus, design)',
         'Mise en ligne d\'un site clair, pensé pour donner envie de séjourner'
       ],
-      tools: ['Astro', 'Visual Studio Code', 'Git']
-    },
-    spotnow: {
-      title: 'Spotnow',
-      status: 'Projet perso · en cours',
-      context: 'Trouver une sortie près de chez soi, avec une recherche par envie (danser, goûter, bouger, en famille…) et des filtres (ce soir, demain, ce week-end, gratuit). Lancement prévu à Béziers, puis à Montpellier.',
-      did: ['Vision produit', 'Identité et interface', 'Développement du prototype'],
-      tools: ['Visual Studio Code', 'GitHub']
-    },
-    moonwalker: {
-      title: 'Moonwalker Vision',
-      status: 'Projet perso · en cours',
-      context: 'Studio créatif autour de la musique, de la vidéo, de la photo et des réseaux sociaux, monté à deux.',
-      did: ['Identité de marque (logo, charte)', 'Site web', 'Direction artistique']
+      tools: [{ items: ['Astro', 'Visual Studio Code', 'Git'] }]
     }
   };
 
@@ -326,13 +323,28 @@
     var pjImg = $('#pjImg'), pjLink = $('#pjLink');
     var opener = null, hideT = null, isOpen = false;
 
-    var fillList = function (box, items, asTools) {
+    var fillList = function (box, items) {
       var ul = box.querySelector('ul');
       ul.innerHTML = '';
       (items || []).forEach(function (t) {
         var li = document.createElement('li'); li.textContent = t; ul.appendChild(li);
       });
       box.hidden = !(items && items.length);
+    };
+    var fillTools = function (groups) {
+      var box = $('#pjTools'), body = $('#pjToolsBody');
+      body.innerHTML = '';
+      (groups || []).forEach(function (g) {
+        if (!g.items || !g.items.length) return;
+        var wrap = document.createElement('div'); wrap.className = 'pj-toolgroup';
+        if (g.group) { var h = document.createElement('h5'); h.textContent = g.group; wrap.appendChild(h); }
+        var ul = document.createElement('ul'); ul.className = 'pj-tools';
+        g.items.forEach(function (t) {
+          var li = document.createElement('li'); li.textContent = t; ul.appendChild(li);
+        });
+        wrap.appendChild(ul); body.appendChild(wrap);
+      });
+      box.hidden = !body.children.length;
     };
     var fillFacts = function (d) {
       var dl = $('#pjFacts');
@@ -373,9 +385,9 @@
       $('#pjTitle').textContent = d.title;
       var st = $('#pjStatus'); st.textContent = d.status || ''; st.hidden = !d.status;
       fillFacts(d);
-      var ctx = $('#pjContext'); ctx.querySelector('p').textContent = d.context || ''; ctx.hidden = !d.context;
+      var ctx = $('#pjContext'); ctx.querySelector('h4').textContent = d.contextLabel || 'Contexte'; ctx.querySelector('p').textContent = d.context || ''; ctx.hidden = !d.context;
       fillList($('#pjDid'), d.did);
-      fillList($('#pjTools'), d.tools);
+      fillTools(d.tools);
       pjLink.href = card.href;
       panel.scrollTop = 0;
       modal.hidden = false;
