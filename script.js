@@ -464,4 +464,13 @@
     // espaces insécables : « 1 490 € HT » ne se coupe pas en fin de ligne
     el.textContent = o.price.replace(/(\d) (?=\d)/g, '$1\u00a0').replace(/ (?=[€])/g, '\u00a0').replace(/€ HT/g, '€\u00a0HT');
   });
+  // ---------- Contact : prise de rendez-vous ----------
+  // Colle ici l'URL de réservation (Calendly, Cal.com…). Vide : le bouton ouvre un e-mail « Appel découverte ».
+  var BOOKING_URL = '';
+  var bookBtn = $('#bookBtn');
+  if (bookBtn && BOOKING_URL) {
+    bookBtn.href = BOOKING_URL;
+    bookBtn.target = '_blank';
+    bookBtn.rel = 'noopener';
+  }
 })();
