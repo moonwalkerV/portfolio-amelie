@@ -433,6 +433,12 @@ body::before{
   background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.18);transition:background .2s ease,border-color .2s ease;
 }
 a.chip-pill:hover{background:rgba(255,79,158,0.18);border-color:var(--hot);}
+/* Écrans tactiles : zone cliquable portée à 44 px sans changer l'apparence */
+@media (pointer:coarse){
+  .nav-btn,.nav-logo,a.chip-pill{position:relative;}
+  .nav-btn::after,a.chip-pill::after{content:'';position:absolute;inset:-4px 0;}
+  .nav-logo::after{content:'';position:absolute;inset:-12px -8px;}
+}
 
 /* ===== APPEL FINAL ===== */
 .cta{
