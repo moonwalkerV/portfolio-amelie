@@ -277,4 +277,150 @@
       });
     }
   }
+  // ---------- Panneau de détails des projets ----------
+  // Contenus modifiables ici : un objet par projet. Un champ vide ou absent n'est pas affiché.
+  var PROJECTS = {
+    kalikana: {
+      title: 'Kalikana',
+      status: 'Expérience',
+      period: '2022 – 2026',
+      role: 'Alternante responsable marketing (2 ans), puis cheffe de projet (2 ans)',
+      context: 'Marque de produits au CBD, avec une boutique en ligne pour les particuliers et un espace réservé aux professionnels. Deux diplômes obtenus pendant cette alternance : responsable marketing, puis cheffe de projet.',
+      did: [
+        'Création du site web B2C et B2B (front-end et back-end)',
+        'Design des étiquettes produit et des supports de communication',
+        'Gestion des réseaux sociaux',
+        'Stratégie produit, planification et coordination des projets'
+      ],
+      tools: ['Trello', 'ClickUp', 'Notion', 'Figma', 'Glide', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro', 'Canva', 'Google Analytics', 'Google Business Profile', 'Search Console']
+    },
+    camping: {
+      title: 'Camping Clairac',
+      status: 'Projet client',
+      context: 'Aire naturelle de 25 emplacements sur un ancien domaine viticole aux portes de Béziers. Pas de mobil-homes ni d\'animation, seulement la campagne et le temps de s\'y poser.',
+      did: [
+        'Refonte totale du site web (structure, contenus, design)',
+        'Mise en ligne d\'un site clair, pensé pour donner envie de séjourner'
+      ],
+      tools: ['Astro', 'Visual Studio Code', 'Git']
+    },
+    spotnow: {
+      title: 'Spotnow',
+      status: 'Projet perso · en cours',
+      context: 'Trouver une sortie près de chez soi, avec une recherche par envie (danser, goûter, bouger, en famille…) et des filtres (ce soir, demain, ce week-end, gratuit). Lancement prévu à Béziers, puis à Montpellier.',
+      did: ['Vision produit', 'Identité et interface', 'Développement du prototype'],
+      tools: ['Visual Studio Code', 'GitHub']
+    },
+    moonwalker: {
+      title: 'Moonwalker Vision',
+      status: 'Projet perso · en cours',
+      context: 'Studio créatif autour de la musique, de la vidéo, de la photo et des réseaux sociaux, monté à deux.',
+      did: ['Identité de marque (logo, charte)', 'Site web', 'Direction artistique']
+    }
+  };
+
+  var modal = $('#pjModal');
+  if (modal && wt) {
+    var panel = modal.querySelector('.pj-panel');
+    var closeBtn = modal.querySelector('.pj-close');
+    var pjImg = $('#pjImg'), pjLink = $('#pjLink');
+    var opener = null, hideT = null, isOpen = false;
+
+    var fillList = function (box, items, asTools) {
+      var ul = box.querySelector('ul');
+      ul.innerHTML = '';
+      (items || []).forEach(function (t) {
+        var li = document.createElement('li'); li.textContent = t; ul.appendChild(li);
+      });
+      box.hidden = !(items && items.length);
+    };
+    var fillFacts = function (d) {
+      var dl = $('#pjFacts');
+      dl.innerHTML = '';
+      [['Rôle', d.role], ['Période', d.period]].forEach(function (f) {
+        if (!f[1]) return;
+        var row = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
+        dt.textContent = f[0]; dd.textContent = f[1];
+        row.appendChild(dt); row.appendChild(dd); dl.appendChild(row);
+      });
+      dl.hidden = !dl.children.length;
+    };
+    var focusables = function () {
+      return Array.prototype.slice.call(panel.querySelectorAll('a[href], button:not([disabled])'))
+        .filter(function (el) { return el.offsetParent !== null; });
+    };
+    var lockScroll = function () {
+      var sbw = window.innerWidth - document.documentElement.clientWidth;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      if (sbw > 0) document.body.style.paddingRight = sbw + 'px';
+    };
+    var unlockScroll = function () {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+
+    var openProject = function (card) {
+      var d = PROJECTS[card.getAttribute('data-project')];
+      if (!d) return false;
+      clearTimeout(hideT);
+      opener = card;
+      var img = card.querySelector('img');
+      pjImg.src = img ? img.getAttribute('src') : '';
+      pjImg.alt = img ? img.getAttribute('alt') : '';
+      pjImg.style.display = '';
+      $('#pjTitle').textContent = d.title;
+      var st = $('#pjStatus'); st.textContent = d.status || ''; st.hidden = !d.status;
+      fillFacts(d);
+      var ctx = $('#pjContext'); ctx.querySelector('p').textContent = d.context || ''; ctx.hidden = !d.context;
+      fillList($('#pjDid'), d.did);
+      fillList($('#pjTools'), d.tools);
+      pjLink.href = card.href;
+      panel.scrollTop = 0;
+      modal.hidden = false;
+      lockScroll();
+      void modal.offsetWidth; // force le calcul de style pour lancer la transition
+      modal.classList.add('is-open');
+      isOpen = true;
+      closeBtn.focus({ preventScroll: true });
+      return true;
+    };
+    var closeProject = function () {
+      if (!isOpen) return;
+      isOpen = false;
+      modal.classList.remove('is-open');
+      unlockScroll();
+      if (opener) opener.focus({ preventScroll: true });
+      hideT = setTimeout(function () { modal.hidden = true; }, reduceMotion ? 0 : 500);
+    };
+
+    pjImg.addEventListener('error', function () { pjImg.style.display = 'none'; });
+
+    // La carte entière ouvre le panneau (clic souris, Entrée ou Espace sur le lien)
+    wt.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var card = e.target.closest ? e.target.closest('.proj') : null;
+      if (card && openProject(card)) e.preventDefault();
+    });
+
+    modal.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('[data-close]')) closeProject();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (!isOpen) return;
+      if (e.key === 'Escape') { e.preventDefault(); closeProject(); return; }
+      if (e.key !== 'Tab') return;
+      var f = focusables();
+      if (!f.length) { e.preventDefault(); panel.focus(); return; }
+      var first = f[0], last = f[f.length - 1], cur = document.activeElement;
+      if (!panel.contains(cur)) { e.preventDefault(); first.focus(); }
+      else if (e.shiftKey && cur === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && cur === last) { e.preventDefault(); first.focus(); }
+    });
+    document.addEventListener('focusin', function (e) {
+      if (isOpen && !modal.contains(e.target)) closeBtn.focus({ preventScroll: true });
+    });
+  }
 })();
