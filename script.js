@@ -299,7 +299,7 @@
         { group: 'Design et vidéo', items: ['Figma', 'Canva', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro'] },
         { group: 'Web et no-code', items: ['Glide'] },
         { group: 'IA', items: ['Midjourney', 'ChatGPT', 'Claude', 'Perplexity', 'Nano Banana'] },
-        { group: 'Marketing et analyse', items: ['Google Analytics', 'Google Business Profile', 'Search Console'] }
+        { group: 'Marketing et analyse', items: ['Outils Google'] }
       ]
     },
     camping: {
