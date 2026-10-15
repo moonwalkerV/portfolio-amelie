@@ -216,11 +216,13 @@
     if (prev) prev.addEventListener('click', function () { by(-1); });
     if (next) next.addEventListener('click', function () { by(1); });
 
-    // Survol : la carte visée se centre et s'agrandit (souris uniquement, hors mouvement réduit)
+    // Survol : la carte visée s'agrandit tout de suite et se centre (souris uniquement, hors mouvement réduit)
     if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
       var cards = Array.prototype.slice.call(wt.querySelectorAll('.proj'));
-      var active = null, intent = null, autoScroll = false, settleT = null, hardT = null;
+      var active = null, autoScroll = false, raf = 0;
       var lastX = -1, lastY = -1, anchorX = -1, anchorY = -1;
+      var DURATION = 850;
+      var ease = function (t) { return 1 - Math.pow(1 - t, 4); }; // easeOutQuart
 
       var setActive = function (card) {
         active = card;
@@ -228,27 +230,33 @@
         wt.classList.toggle('has-focus', !!card);
       };
       var endAuto = function () {
-        clearTimeout(settleT); clearTimeout(hardT);
+        cancelAnimationFrame(raf);
+        wt.classList.remove('auto-scroll');
         autoScroll = false;
         anchorX = lastX; anchorY = lastY; // on attend un vrai mouvement avant de réagir à nouveau
       };
       var centerOn = function (card) {
         var tr = wt.getBoundingClientRect(), cr = card.getBoundingClientRect();
         var max = wt.scrollWidth - wt.clientWidth;
-        var target = Math.max(0, Math.min(max, wt.scrollLeft + (cr.left + cr.width / 2) - (tr.left + tr.width / 2)));
-        if (Math.abs(target - wt.scrollLeft) < 2) return;
+        var from = wt.scrollLeft;
+        var target = Math.max(0, Math.min(max, from + (cr.left + cr.width / 2) - (tr.left + tr.width / 2)));
+        if (Math.abs(target - from) < 2) return;
+        cancelAnimationFrame(raf);
         autoScroll = true;
-        clearTimeout(hardT);
-        hardT = setTimeout(endAuto, 1200);
-        wt.scrollTo({ left: target, behavior: 'smooth' });
+        wt.classList.add('auto-scroll'); // coupe le magnétisme le temps de l'animation
+        var t0 = performance.now();
+        var step = function (now) {
+          var p = Math.min(1, (now - t0) / DURATION);
+          wt.scrollLeft = from + (target - from) * ease(p);
+          if (p < 1) raf = requestAnimationFrame(step); else endAuto();
+        };
+        raf = requestAnimationFrame(step);
       };
 
-      wt.addEventListener('scroll', function () {
-        if (!autoScroll) return;
-        clearTimeout(settleT);
-        settleT = setTimeout(endAuto, 120);
-      }, { passive: true });
-      wt.addEventListener('scrollend', function () { if (autoScroll) endAuto(); });
+      // Une action de l'utilisateur sur le défilement reprend la main
+      ['wheel', 'touchstart', 'mousedown'].forEach(function (ev) {
+        wt.addEventListener(ev, function () { if (autoScroll) endAuto(); }, { passive: true });
+      });
 
       wt.addEventListener('pointermove', function (e) {
         if (e.pointerType && e.pointerType !== 'mouse') return;
@@ -258,18 +266,12 @@
         if (anchorX >= 0 && Math.abs(e.clientX - anchorX) + Math.abs(e.clientY - anchorY) < 6) return;
         anchorX = -1;
         var card = e.target.closest ? e.target.closest('.proj') : null;
-        if (!card || card === active) { if (card === active) { clearTimeout(intent); intent = null; } return; }
-        clearTimeout(intent);
-        intent = setTimeout(function () {
-          intent = null;
-          if (autoScroll || down) return;
-          setActive(card);
-          centerOn(card);
-        }, 130);
+        if (!card || card === active) return;
+        setActive(card);
+        centerOn(card);
       });
 
       wt.addEventListener('pointerleave', function () {
-        clearTimeout(intent); intent = null;
         lastX = lastY = anchorX = anchorY = -1;
         setActive(null);
       });
