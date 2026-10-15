@@ -185,14 +185,19 @@
     }, { threshold: 0.2 });
     revealEls.concat(typeEls).forEach(function (el) { io.observe(el); });
 
+    // Le comptage se déclenche avec l'apparition de la carte (.stat) qui le contient, au même seuil que sa révélation
     var io2 = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
-        countUp(en.target);
+        var num = en.target.hasAttribute('data-count') ? en.target : en.target.querySelector('[data-count]');
+        if (num) countUp(num);
         io2.unobserve(en.target);
       });
-    }, { threshold: 0.6 });
-    countEls.forEach(function (el) { el.textContent = '0'; io2.observe(el); });
+    }, { threshold: 0.2 });
+    countEls.forEach(function (el) {
+      el.textContent = '0';
+      io2.observe(el.closest('.stat') || el);
+    });
   }
 
   // ---------- Carrousel de projets ----------
