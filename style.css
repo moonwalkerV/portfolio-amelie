@@ -308,6 +308,12 @@ body::before{
   box-shadow:0 30px 60px -28px rgba(26,20,32,0.5);
 }
 .proj-img img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.proj-badge{
+  position:absolute;top:14px;left:14px;z-index:2;padding:5px 11px;border-radius:999px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.02em;line-height:1.2;
+  color:#fff;background:rgba(23,18,31,0.62);border:1px solid rgba(255,255,255,0.18);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
 /* Ombre renforcée : calque dédié dont seule l'opacité s'anime */
 .proj::after{
   content:'';position:absolute;top:0;left:0;right:0;aspect-ratio:16/10.5;z-index:-1;border-radius:20px;
@@ -320,7 +326,7 @@ body::before{
   .work-track.has-focus .proj.is-active{transform:scale(1.1);opacity:1;}
   .work-track.has-focus .proj.is-active::after{opacity:1;}
 }
-.proj-meta{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:16px 4px 0;}
+.proj-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px;padding:16px 4px 0;}
 .proj-meta b{font-family:'Unbounded',sans-serif;font-weight:700;font-size:15px;letter-spacing:-0.03em;}
 .proj-meta span{font-size:12.5px;color:#7a6d82;}
 .work-nav{display:flex;justify-content:center;gap:12px;margin-top:-18px;}
