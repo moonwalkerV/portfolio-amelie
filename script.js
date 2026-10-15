@@ -11,11 +11,11 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
   // ---------- Marquee d'outils ----------
-  var tools = ['ChatGPT', 'Notion', 'Figma', 'Canva', 'Meta Ads', 'Google Analytics', 'Asana', 'Midjourney'];
+  var tools = ['Figma', 'Canva', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro', 'Notion', 'Trello', 'ClickUp', 'Glide', 'Google Analytics', 'Visual Studio Code', 'ChatGPT', 'Claude', 'Midjourney'];
   var track = $('#marqueeTrack');
   if (track) {
     var html = '';
-    for (var r = 0; r < 4; r++) {
+    for (var r = 0; r < 2; r++) { // 2 copies suffisent (boucle à -50 %), vitesse inchangée
       for (var i = 0; i < tools.length; i++) {
         html += '<span>' + tools[i] + '</span>';
       }
