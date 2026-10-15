@@ -449,21 +449,31 @@
     });
   }
   // ---------- Offres : prix (modifiables ici, un objet par offre) ----------
+  // SHOW_PRICES : false = les offres « fixed » affichent « Devis gratuit sous 24 h » au lieu du prix.
+  // price_mode : 'fixed' = prix affiché (selon SHOW_PRICES) ; 'quote' = « Sur devis », toujours.
+  var SHOW_PRICES = true;
+  var QUOTE_LABEL = 'Sur devis';
+  var HIDDEN_PRICE_LABEL = 'Devis gratuit sous 24 h';
   var OFFERS = {
-    'vitrine-essentiel': { price: 'dès 990 € HT' },
-    'mini-identite':     { price: 'dès 590 € HT' },
-    'pack-lancement':    { price: 'dès 1 490 € HT' },
-    'vitrine-complete':  { price: 'dès 1 490 € HT' },
-    'suivi-mensuel':     { price: 'dès 39 € HT par mois' },
-    'gestion-de-projet': { price: 'Sur devis' }
+    'vitrine-essentiel': { price_mode: 'fixed', price: 'dès 990 € HT' },
+    'mini-identite':     { price_mode: 'fixed', price: 'dès 590 € HT' },
+    'pack-lancement':    { price_mode: 'fixed', price: 'dès 1 490 € HT' },
+    'vitrine-complete':  { price_mode: 'quote', price: 'dès 1 490 € HT' }, // price ignoré tant que price_mode = 'quote'
+    'suivi-mensuel':     { price_mode: 'quote', price: 'dès 39 € HT par mois' },
+    'gestion-de-projet': { price_mode: 'quote' }
   };
   $$('.offre[data-offer]').forEach(function (card) {
     var o = OFFERS[card.getAttribute('data-offer')];
     var el = card.querySelector('.offre-price');
     if (!o || !el) return;
+    var text;
+    if (o.price_mode === 'quote') text = QUOTE_LABEL;
+    else if (!SHOW_PRICES) text = HIDDEN_PRICE_LABEL;
+    else text = o.price || QUOTE_LABEL;
     // espaces insécables : « 1 490 € HT » ne se coupe pas en fin de ligne
-    el.textContent = o.price.replace(/(\d) (?=\d)/g, '$1\u00a0').replace(/ (?=[€])/g, '\u00a0').replace(/€ HT/g, '€\u00a0HT');
+    el.textContent = text.replace(/(\d) (?=\d)/g, '$1\u00a0').replace(/ (?=[€])/g, '\u00a0').replace(/€ HT/g, '€\u00a0HT');
   });
+
   // ---------- Contact : prise de rendez-vous ----------
   // Colle ici l'URL de réservation (Calendly, Cal.com…). Vide : le bouton ouvre un e-mail « Appel découverte ».
   var BOOKING_URL = '';
