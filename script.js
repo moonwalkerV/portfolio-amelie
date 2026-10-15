@@ -11,7 +11,7 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
   // ---------- Marquee d'outils ----------
-  var tools = ['Figma', 'Canva', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro', 'Notion', 'Trello', 'ClickUp', 'Glide', 'Google Analytics', 'Visual Studio Code', 'Outils IA'];
+  var tools = ['Figma', 'Canva', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro', 'Notion', 'Trello', 'ClickUp', 'Glide', 'Outils Google', 'Visual Studio Code', 'Outils IA'];
   var track = $('#marqueeTrack');
   if (track) {
     var html = '';
@@ -21,6 +21,13 @@
       }
     }
     track.innerHTML = html;
+    // Vitesse constante (95 px/s, celle de l'ancienne bande) : la durée suit la largeur réelle de la liste
+    var MARQUEE_SPEED = 94.875;
+    var setMarqueeSpeed = function () {
+      track.style.animationDuration = ((track.scrollWidth / 2) / MARQUEE_SPEED).toFixed(2) + 's';
+    };
+    setMarqueeSpeed();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(setMarqueeSpeed);
   }
 
   // ---------- Codes-barres décoratifs ----------
