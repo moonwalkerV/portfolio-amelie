@@ -311,8 +311,7 @@
       did: [
         'Refonte totale du site web (structure, contenus, design)',
         'Mise en ligne d\'un site clair, pensé pour donner envie de séjourner'
-      ],
-      tools: [{ items: ['Astro', 'Visual Studio Code', 'Git'] }]
+      ]
     }
   };
 
