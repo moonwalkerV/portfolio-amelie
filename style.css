@@ -208,6 +208,8 @@ body::before{
 }
 .scroll-hint i{width:1px;height:26px;background:linear-gradient(var(--hot),transparent);animation:cue 1.8s ease-in-out infinite;}
 @keyframes cue{0%{opacity:0;}50%{opacity:1;}100%{opacity:0;}}
+.typer,.scroll-hint{transition:opacity .35s ease,visibility 0s;}
+.hero.is-away .typer,.hero.is-away .scroll-hint{opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s;}
 
 /* ===== BIO ===== */
 .bio{

@@ -119,6 +119,8 @@
     var y = window.scrollY || window.pageYOffset;
     var limit = hero ? hero.offsetHeight * 0.6 : 200;
     nav.classList.toggle('show', y > limit);
+    // Le texte tapé et « Défiler » n'appartiennent qu'à l'accueil : ils s'effacent dès qu'on le quitte
+    if (hero) hero.classList.toggle('is-away', y > hero.offsetHeight * 0.3);
     var theme = 'dark';
     for (var i = 0; i < themed.length; i++) {
       var rc = themed[i].getBoundingClientRect();
