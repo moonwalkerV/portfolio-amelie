@@ -16,6 +16,10 @@
   var setHidden = function (sel, hide) { $$(sel).forEach(function (el) { el.hidden = hide; }); };
   setHidden('#offres, .nav-links a[href="#offres"]', !SHOW_OFFERS);
   setHidden('.cta-band', SHOW_OFFERS);
+  // SHOW_STATS : true = bande des chiffres (4 / 4 / 2) ; false = section « Comment je travaille » à la place.
+  var SHOW_STATS = false;
+  setHidden('.stats', !SHOW_STATS);
+  setHidden('.how', SHOW_STATS);
 
   // ---------- Marquee d'outils ----------
   var tools = ['Figma', 'Canva', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Premiere Pro', 'Notion', 'Trello', 'ClickUp', 'Glide', 'Outils Google', 'Visual Studio Code', 'Outils IA'];
