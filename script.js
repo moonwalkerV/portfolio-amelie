@@ -471,7 +471,7 @@
     else if (!SHOW_PRICES) text = HIDDEN_PRICE_LABEL;
     else text = o.price || QUOTE_LABEL;
     // espaces insécables : « 1 490 € HT » ne se coupe pas en fin de ligne
-    el.textContent = text.replace(/(\d) (?=\d)/g, '$1\u00a0').replace(/ (?=[€])/g, '\u00a0').replace(/€ HT/g, '€\u00a0HT');
+    el.textContent = text.replace(/(\d) (?=\d)/g, '$1\u00a0').replace(/ (?=[€])/g, '\u00a0').replace(/€ HT/g, '€\u00a0HT').replace(/(\d) (?=h\b)/g, '$1\u00a0');
   });
 
   // ---------- Contact : prise de rendez-vous ----------
