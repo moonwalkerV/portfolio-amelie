@@ -13,7 +13,7 @@
   // ---------- Réglages du formulaire de contact (à renseigner) ----------
   var WEB3FORMS_KEY = '438bee4e-d1ef-4373-87de-dc472d92baaf'; // clé d'accès Web3Forms (web3forms.com) ; si elle vaut « VOTRE_CLE » ou est vide, l'envoi affiche le message d'erreur
   var BOOKING_URL = '';            // URL de réservation (Calendly, Cal.com…) : bouton « Réserver un échange » après l'envoi, et boutons « Réserver un appel » ; vide = pas de bouton après l'envoi, et « Réserver un appel » ouvre un e-mail
-  var MENTIONS_URL = 'mentions-legales.html'; // page des mentions légales / confidentialité (à créer : elle n'existe pas encore)
+  var MENTIONS_URL = 'mentions-legales/#donnees-personnelles'; // page des mentions légales (section « Données personnelles »), ouverte dans un nouvel onglet
   var CONTACT_EMAIL = 'ameliephilippon@live.fr'; // e-mail de secours affiché si l'envoi échoue
 
   // ---------- Sections activables ----------
