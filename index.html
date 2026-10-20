@@ -263,7 +263,7 @@
     </div>
     <div class="cta-band-btns reveal">
       <a href="mailto:amelie.philippon@live.fr?subject=Appel%20d%C3%A9couverte" class="btn-light" data-book>Réserver un appel gratuit de 20&nbsp;min <i>↗</i></a>
-      <a href="mailto:amelie.philippon@live.fr?subject=Demande%20de%20devis" class="btn-ghost">Demander un devis <i>↗</i></a>
+      <a href="#contact" class="btn-ghost">Demander un devis <i>↗</i></a>
     </div>
   </div>
 </section>
@@ -344,13 +344,118 @@
   </div>
 </section>
 
+<!-- PARLONS DE VOTRE PROJET : formulaire de demande (sombre) -->
+<section class="contact" id="contact" data-nav="dark" aria-labelledby="contactTitle">
+  <div class="wrap contact-grid">
+    <div class="contact-intro reveal">
+      <h2 id="contactTitle">Parlons de votre projet</h2>
+      <p>Réponse sous 48&nbsp;h ouvrées.</p>
+    </div>
+
+    <div class="contact-card reveal">
+      <form id="contactForm" novalidate>
+        <p class="form-note">Tous les champs sont obligatoires, sauf ceux marqués « facultatif ».</p>
+
+        <div class="form-grid">
+          <div class="field span-3">
+            <label for="cf-name">Nom et prénom</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required aria-describedby="cf-name-err">
+            <p class="field-error" id="cf-name-err" hidden></p>
+          </div>
+          <div class="field span-3">
+            <label for="cf-email">E-mail</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" inputmode="email" required aria-describedby="cf-email-err">
+            <p class="field-error" id="cf-email-err" hidden></p>
+          </div>
+
+          <div class="field span-3">
+            <label for="cf-company">Entreprise <span class="opt">(facultatif)</span></label>
+            <input type="text" id="cf-company" name="company" autocomplete="organization">
+          </div>
+          <div class="field span-3">
+            <label for="cf-site">Site actuel <span class="opt">(facultatif)</span></label>
+            <input type="text" id="cf-site" name="site" autocomplete="url" inputmode="url" placeholder="https://" aria-describedby="cf-site-err">
+            <p class="field-error" id="cf-site-err" hidden></p>
+          </div>
+
+          <div class="field span-6">
+            <label for="cf-need">Type de besoin</label>
+            <select id="cf-need" name="need" required aria-describedby="cf-need-err">
+              <option value="">Choisir…</option>
+              <option>Nouveau site</option>
+              <option>Refonte de site</option>
+              <option>Marketing et communication</option>
+              <option>Gestion de projet</option>
+              <option>Autre</option>
+            </select>
+            <p class="field-error" id="cf-need-err" hidden></p>
+          </div>
+
+          <div class="field span-3">
+            <label for="cf-budget">Budget envisagé</label>
+            <select id="cf-budget" name="budget" required aria-describedby="cf-budget-err">
+              <option value="">Choisir…</option>
+              <option>Moins de 1 000 €</option>
+              <option>1 000 à 3 000 €</option>
+              <option>3 000 à 6 000 €</option>
+              <option>Plus de 6 000 €</option>
+              <option>Je ne sais pas encore</option>
+            </select>
+            <p class="field-error" id="cf-budget-err" hidden></p>
+          </div>
+          <div class="field span-3">
+            <label for="cf-delay">Délai souhaité</label>
+            <select id="cf-delay" name="delay" required aria-describedby="cf-delay-err">
+              <option value="">Choisir…</option>
+              <option>Dès que possible</option>
+              <option>Sous 1 mois</option>
+              <option>Sous 3 mois</option>
+              <option>Pas de date précise</option>
+            </select>
+            <p class="field-error" id="cf-delay-err" hidden></p>
+          </div>
+
+          <div class="field span-6">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="6" maxlength="1000" required aria-describedby="cf-message-count cf-message-err"></textarea>
+            <p class="field-count" id="cf-message-count">0 / 1000 caractères</p>
+            <p class="field-error" id="cf-message-err" hidden></p>
+          </div>
+
+          <div class="field field--check span-6">
+            <div class="check">
+              <input type="checkbox" id="cf-consent" name="consent" required aria-describedby="cf-consent-err">
+              <label for="cf-consent">J'accepte que mes données soient utilisées pour répondre à ma demande. <a href="mentions-legales.html" id="contactLegal" target="_blank" rel="noopener">Mentions légales et confidentialité</a></label>
+            </div>
+            <p class="field-error" id="cf-consent-err" hidden></p>
+          </div>
+
+          <!-- Anti-spam : champ invisible, laissé vide par les vrais visiteurs -->
+          <div class="hp" aria-hidden="true">
+            <label for="cf-botcheck">Ne pas cocher cette case</label>
+            <input type="checkbox" id="cf-botcheck" name="botcheck" tabindex="-1" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="form-status form-status--error" id="contactError" role="alert" hidden></div>
+        <button type="submit" class="btn-light contact-submit" id="contactSubmit">Envoyer ma demande <i>↗</i></button>
+      </form>
+
+      <div class="form-success" id="contactSuccess" tabindex="-1" role="status" hidden>
+        <h3>Merci, j'ai bien reçu votre demande, je vous réponds sous 48&nbsp;h ouvrées.</h3>
+        <a class="btn-light" id="contactBook" hidden>Réserver un échange <i>↗</i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- APPEL FINAL (rose) -->
-<section class="cta" id="contact" data-nav="pink">
+<section class="cta" data-nav="pink">
   <div class="wrap">
     <h2 class="reveal">Une idée&nbsp;?<br>Construisons&#8209;la.</h2>
     <div class="cta-btns reveal">
       <a href="mailto:amelie.philippon@live.fr?subject=Appel%20d%C3%A9couverte" class="btn-dark" id="bookBtn" data-book>Réserver un appel gratuit de 20&nbsp;min <i>↗</i></a>
-      <a href="mailto:amelie.philippon@live.fr?subject=Demande%20de%20devis" class="btn-outline">Demander un devis <i>↗</i></a>
+      <a href="#contact" class="btn-outline">Demander un devis <i>↗</i></a>
     </div>
     <p class="copy">© 2026 Amélie Philippon</p>
   </div>

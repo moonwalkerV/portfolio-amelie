@@ -10,6 +10,12 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  // ---------- Réglages du formulaire de contact (à renseigner) ----------
+  var WEB3FORMS_KEY = 'VOTRE_CLE'; // clé d'accès Web3Forms (web3forms.com) ; tant qu'elle vaut « VOTRE_CLE », l'envoi affiche le message d'erreur
+  var BOOKING_URL = '';            // URL de réservation (Calendly, Cal.com…) : bouton « Réserver un échange » après l'envoi, et boutons « Réserver un appel » ; vide = pas de bouton après l'envoi, et « Réserver un appel » ouvre un e-mail
+  var MENTIONS_URL = 'mentions-legales.html'; // page des mentions légales / confidentialité (à créer : elle n'existe pas encore)
+  var CONTACT_EMAIL = 'ameliephilippon@live.fr'; // e-mail de secours affiché si l'envoi échoue
+
   // ---------- Sections activables ----------
   // SHOW_OFFERS : true = section « Mes formules » + lien « Offres » dans le menu ; false = bandeau de contact à la place.
   var SHOW_OFFERS = false;
@@ -485,9 +491,145 @@
     el.textContent = text.replace(/(\d) (?=\d)/g, '$1\u00a0').replace(/ (?=[€])/g, '\u00a0').replace(/€ HT/g, '€\u00a0HT').replace(/(\d) (?=h\b)/g, '$1\u00a0');
   });
 
+  // ---------- Formulaire de demande de projet ----------
+  var contactForm = $('#contactForm');
+  if (contactForm) {
+    var cfSubmit = $('#contactSubmit'), cfError = $('#contactError'), cfSuccess = $('#contactSuccess');
+    var cfMessage = $('#cf-message'), cfCount = $('#cf-message-count');
+    var SUBMIT_LABEL = cfSubmit.innerHTML;
+    var ERROR_MSG = {
+      'cf-name': 'Merci d\'indiquer votre nom et prénom.',
+      'cf-email': 'Merci d\'indiquer une adresse e-mail valide (exemple : nom@domaine.fr).',
+      'cf-site': 'Cette adresse de site ne semble pas valide (exemple : https://monsite.fr).',
+      'cf-need': 'Merci de choisir un type de besoin.',
+      'cf-budget': 'Merci de choisir un budget envisagé.',
+      'cf-delay': 'Merci de choisir un délai souhaité.',
+      'cf-message': 'Merci de décrire votre projet en quelques lignes.',
+      'cf-consent': 'Merci de cocher cette case pour envoyer votre demande.'
+    };
+    var cfFields = ['cf-name', 'cf-email', 'cf-site', 'cf-need', 'cf-budget', 'cf-delay', 'cf-message', 'cf-consent'].map(function (id) { return document.getElementById(id); });
+
+    var legal = $('#contactLegal');
+    if (legal && MENTIONS_URL) legal.href = MENTIONS_URL;
+
+    // Adresse du site : « monsite.fr » est accepté et complété en « https://monsite.fr »
+    var normalizeSite = function (v) {
+      v = v.trim();
+      if (!v) return '';
+      if (!/^https?:\/\//i.test(v)) v = 'https://' + v;
+      try {
+        var u = new URL(v);
+        return (u.hostname.indexOf('.') > 0 && !/\s/.test(v)) ? v : null;
+      } catch (e) { return null; }
+    };
+    var isInvalid = function (el) {
+      var v = el.type === 'checkbox' ? el.checked : el.value.trim();
+      if (el.id === 'cf-email') return !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      if (el.id === 'cf-site') return normalizeSite(el.value) === null;
+      return !v;
+    };
+    var setFieldError = function (el, msg) {
+      var err = document.getElementById(el.id + '-err');
+      if (!err) return;
+      err.textContent = msg || '';
+      err.hidden = !msg;
+      if (msg) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+    };
+    var checkField = function (el) {
+      var bad = isInvalid(el);
+      setFieldError(el, bad ? ERROR_MSG[el.id] : '');
+      return !bad;
+    };
+
+    // Une fois une erreur affichée, elle se corrige en direct
+    cfFields.forEach(function (el) {
+      var ev = (el.tagName === 'SELECT' || el.type === 'checkbox') ? 'change' : 'input';
+      el.addEventListener(ev, function () { if (el.getAttribute('aria-invalid')) checkField(el); });
+    });
+    cfMessage.addEventListener('input', function () {
+      cfCount.textContent = cfMessage.value.length + ' / 1000 caractères';
+    });
+
+    var showError = function () {
+      cfError.innerHTML = '';
+      cfError.appendChild(document.createTextNode('Votre demande n\'a pas pu être envoyée. Vous pouvez réessayer, ou m\'écrire directement à '));
+      var a = document.createElement('a');
+      a.href = 'mailto:' + CONTACT_EMAIL; a.textContent = CONTACT_EMAIL;
+      cfError.appendChild(a);
+      cfError.appendChild(document.createTextNode('.'));
+      cfError.hidden = false;
+    };
+    var finish = function (ok) {
+      cfSubmit.disabled = false;
+      cfSubmit.removeAttribute('aria-busy');
+      cfSubmit.innerHTML = SUBMIT_LABEL;
+      if (!ok) { showError(); return; }
+      contactForm.hidden = true;
+      var book = $('#contactBook');
+      if (book && BOOKING_URL) { book.href = BOOKING_URL; book.target = '_blank'; book.rel = 'noopener'; book.hidden = false; }
+      cfSuccess.hidden = false;
+      cfSuccess.focus({ preventScroll: true });
+      cfSuccess.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
+    };
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (cfSubmit.disabled) return;
+      cfError.hidden = true;
+
+      var firstBad = null;
+      cfFields.forEach(function (el) { if (!checkField(el) && !firstBad) firstBad = el; });
+      if (firstBad) {
+        firstBad.focus();
+        return;
+      }
+
+      // Anti-spam : un robot a rempli le champ invisible ; on fait semblant que tout va bien, sans rien envoyer
+      if ($('#cf-botcheck').checked) { finish(true); return; }
+
+      // Tant que la clé n'est pas renseignée, rien n'est envoyé
+      if (!WEB3FORMS_KEY || WEB3FORMS_KEY === 'VOTRE_CLE') { finish(false); return; }
+
+      cfSubmit.disabled = true;
+      cfSubmit.setAttribute('aria-busy', 'true');
+      cfSubmit.textContent = 'Envoi en cours…';
+
+      var val = function (id) { return document.getElementById(id).value.trim(); };
+      var payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: 'Nouvelle demande de projet via le site',
+        from_name: 'Site portfolio',
+        name: val('cf-name'),
+        email: val('cf-email'),
+        'Entreprise': val('cf-company') || 'Non renseignée',
+        'Site actuel': normalizeSite(val('cf-site')) || 'Non renseigné',
+        'Type de besoin': val('cf-need'),
+        'Budget envisagé': val('cf-budget'),
+        'Délai souhaité': val('cf-delay'),
+        'Message': cfMessage.value.trim(),
+        'Consentement': 'Oui : accepte que ses données soient utilisées pour répondre à sa demande'
+      };
+
+      var ctrl = window.AbortController ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function (res) {
+        return res.json().then(function (data) { return !!(res.ok && data && data.success); }, function () { return false; });
+      }).catch(function () {
+        return false;
+      }).then(function (ok) {
+        clearTimeout(timer);
+        finish(ok);
+      });
+    });
+  }
+
   // ---------- Contact : prise de rendez-vous ----------
-  // Colle ici l'URL de réservation (Calendly, Cal.com…). Vide : le bouton ouvre un e-mail « Appel découverte ».
-  var BOOKING_URL = '';
+  // BOOKING_URL : voir « Réglages du formulaire de contact » en haut du fichier. Vide : le bouton ouvre un e-mail « Appel découverte ».
   if (BOOKING_URL) {
     $$('[data-book]').forEach(function (a) {
       a.href = BOOKING_URL;
