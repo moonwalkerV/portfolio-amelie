@@ -77,10 +77,10 @@ body::before{
   color: rgba(246,239,248,0.07);
   opacity:0;
 }
-.bg-word.w1{top:25%;left:-1%;animation:wordL 1.2s cubic-bezier(.2,.8,.25,1) .5s forwards;}
-.bg-word.w2{top:34%;right:3%;color: rgba(255,79,158,0.14);animation:wordR 1.2s cubic-bezier(.2,.8,.25,1) .65s forwards;}
-.bg-word.w3{top:66%;left:2%;color: rgba(255,79,158,0.14);animation:wordL 1.2s cubic-bezier(.2,.8,.25,1) .8s forwards;}
-.bg-word.w4{top:75%;right:2%;animation:wordR 1.2s cubic-bezier(.2,.8,.25,1) .95s forwards;}
+.bg-word.bg-word-1{top:25%;left:-1%;animation:wordL 1.2s cubic-bezier(.2,.8,.25,1) .5s forwards;}
+.bg-word.bg-word-2{top:34%;right:3%;color: rgba(255,79,158,0.14);animation:wordR 1.2s cubic-bezier(.2,.8,.25,1) .65s forwards;}
+.bg-word.bg-word-3{top:66%;left:2%;color: rgba(255,79,158,0.14);animation:wordL 1.2s cubic-bezier(.2,.8,.25,1) .8s forwards;}
+.bg-word.bg-word-4{top:75%;right:2%;animation:wordR 1.2s cubic-bezier(.2,.8,.25,1) .95s forwards;}
 @keyframes wordL{from{opacity:0;transform:translateX(-80px);}to{opacity:1;transform:none;}}
 @keyframes wordR{from{opacity:0;transform:translateX(80px);}to{opacity:1;transform:none;}}
 
@@ -187,7 +187,7 @@ body::before{
 
 .chip{width:32px;height:32px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;}
 .chip svg{width:16px;height:16px;}
-.c1{background:#fbd0e0;} .c2{background:var(--lav);} .c3{background:var(--peach);} .c4{background:var(--mint);}
+.chip-rose{background:#fbd0e0;} .chip-lavande{background:var(--lav);} .chip-peche{background:var(--peach);} .chip-menthe{background:var(--mint);}
 
 .barcode{display:flex;gap:2px;align-items:flex-end;height:16px;flex:none;}
 .barcode i{display:block;background:#15111f;}
@@ -618,7 +618,7 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
   .nav-links{display:none;}
   .pill{padding-left:20px;}
   .bg-word{font-size:clamp(34px,11vw,60px);}
-  .bg-word.w1{top:24%;} .bg-word.w2{top:32%;} .bg-word.w3{top:70%;} .bg-word.w4{top:78%;}
+  .bg-word.bg-word-1{top:24%;} .bg-word.bg-word-2{top:32%;} .bg-word.bg-word-3{top:70%;} .bg-word.bg-word-4{top:78%;}
   .typer{left:20px;bottom:30px;font-size:12px;max-width:62%;}
   .bio{padding:120px 0 100px;}
   .bio-grid{grid-template-columns:1fr;gap:56px;}
