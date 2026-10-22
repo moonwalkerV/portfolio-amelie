@@ -1,5 +1,5 @@
 // ============================================
-// Amélie Philippon — Portfolio (v2)
+// Amélie Philippon, portfolio
 // ============================================
 
 (function () {
@@ -317,7 +317,7 @@
       period: '2022 – 2026',
       role: 'Alternante responsable marketing (2 ans), puis cheffe de projet (2 ans)',
       contextLabel: 'Contexte',
-      context: 'Marque de produits au CBD, avec une boutique en ligne pour les particuliers et un espace réservé aux professionnels. Deux diplômes obtenus pendant cette alternance : responsable marketing, puis cheffe de projet.',
+      context: 'Marque de produits au CBD, avec une boutique en ligne pour les particuliers et un espace réservé aux professionnels. Deux diplômes obtenus pendant cette alternance\u00a0: responsable marketing, puis cheffe de projet.',
       did: [
         'Création du site web B2C et B2B (front-end et back-end)',
         'Design des étiquettes produit et des supports de communication',
@@ -338,10 +338,10 @@
       status: 'Projet client',
       period: 'Septembre – octobre 2026',
       contextLabel: 'Mission',
-      context: 'Refondre entièrement le site de cette aire naturelle : mieux présenter le lieu et les séjours, faciliter la préparation de la venue et donner envie de réserver.',
+      context: 'Refondre entièrement le site de cette aire naturelle\u00a0: mieux présenter le lieu et les séjours, faciliter la préparation de la venue et donner envie de réserver.',
       did: [
         'Refonte totale du site web (structure, contenus, design)',
-        'Mise en ligne d\'un site clair, pensé pour donner envie de séjourner'
+        'Mise en ligne d’un site clair, pensé pour donner envie de séjourner'
       ]
     }
   };
@@ -498,9 +498,9 @@
     var cfMessage = $('#cf-message'), cfCount = $('#cf-message-count');
     var SUBMIT_LABEL = cfSubmit.innerHTML;
     var ERROR_MSG = {
-      'cf-name': 'Merci d\'indiquer votre nom et prénom.',
-      'cf-email': 'Merci d\'indiquer une adresse e-mail valide (exemple : nom@domaine.fr).',
-      'cf-site': 'Cette adresse de site ne semble pas valide (exemple : https://monsite.fr).',
+      'cf-name': 'Merci d’indiquer votre nom et prénom.',
+      'cf-email': 'Merci d’indiquer une adresse e-mail valide (exemple\u00a0: nom@domaine.fr).',
+      'cf-site': 'Cette adresse de site ne semble pas valide (exemple\u00a0: https://monsite.fr).',
       'cf-need': 'Merci de choisir un type de besoin.',
       'cf-budget': 'Merci de choisir un budget envisagé.',
       'cf-delay': 'Merci de choisir un délai souhaité.',
@@ -552,7 +552,7 @@
 
     var showError = function () {
       cfError.innerHTML = '';
-      cfError.appendChild(document.createTextNode('Votre demande n\'a pas pu être envoyée. Vous pouvez réessayer, ou m\'écrire directement à '));
+      cfError.appendChild(document.createTextNode('Votre demande n’a pas pu être envoyée. Vous pouvez réessayer, ou m’écrire directement à '));
       var a = document.createElement('a');
       a.href = 'mailto:' + CONTACT_EMAIL; a.textContent = CONTACT_EMAIL;
       cfError.appendChild(a);
@@ -607,7 +607,7 @@
         'Budget envisagé': val('cf-budget'),
         'Délai souhaité': val('cf-delay'),
         'Message': cfMessage.value.trim(),
-        'Consentement': 'Oui : accepte que ses données soient utilisées pour répondre à sa demande'
+        'Consentement': 'Oui\u00a0: accepte que ses données soient utilisées pour répondre à sa demande'
       };
 
       var ctrl = window.AbortController ? new AbortController() : null;
