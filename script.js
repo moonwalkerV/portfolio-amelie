@@ -104,7 +104,7 @@
   var phrases = [
     'Je crée des sites qui donnent envie de vous appeler',
     'Je m’occupe de votre projet du début à la fin',
-    'Un logo, un site, des posts : je gère',
+    'Un logo, un site, des posts\u00a0: je gère',
     'Basée à Béziers, je travaille aussi à distance'
   ];
   if (typer) {
@@ -317,7 +317,7 @@
       period: '2022 – 2026',
       role: 'Alternante responsable marketing (2 ans), puis cheffe de projet (2 ans)',
       contextLabel: 'Contexte',
-      context: 'Une marque de produits au CBD, avec une boutique en ligne pour les particuliers et un espace réservé aux professionnels. Quatre ans d’alternance, deux diplômes à la clé : responsable marketing, puis cheffe de projet.',
+      context: 'Une marque de produits au CBD, avec une boutique en ligne pour les particuliers et un espace réservé aux professionnels. Quatre ans d’alternance, deux diplômes à la clé\u00a0: responsable marketing, puis cheffe de projet.',
       did: [
         'Création du site pour les particuliers et pour les professionnels, côté visible comme côté technique',
         'Étiquettes des produits et supports de communication',
@@ -338,7 +338,7 @@
       status: 'Projet client',
       period: 'Septembre – octobre 2026',
       contextLabel: 'Mission',
-      context: 'Refaire entièrement le site de cette aire naturelle : mieux présenter le lieu et les séjours, aider à préparer la venue et donner envie de réserver.',
+      context: 'Refaire entièrement le site de cette aire naturelle\u00a0: mieux présenter le lieu et les séjours, aider à préparer la venue et donner envie de réserver.',
       did: [
         'Refonte totale du site (structure, textes, design)',
         'Mise en ligne d’un site clair, qui donne envie de venir'
@@ -499,7 +499,7 @@
     var SUBMIT_LABEL = cfSubmit.innerHTML;
     var ERROR_MSG = {
       'cf-name': 'Indiquez votre nom et prénom, pour que je sache à qui répondre.',
-      'cf-email': 'Cette adresse e-mail ne semble pas valide (exemple : nom@domaine.fr).',
+      'cf-email': 'Cette adresse e-mail ne semble pas valide (exemple\u00a0: nom@domaine.fr).',
       'cf-site': 'Cette adresse de site ne semble pas valide (exemple\u00a0: https://monsite.fr).',
       'cf-need': 'Choisissez le type de besoin le plus proche.',
       'cf-budget': 'Choisissez une fourchette de budget, même approximative.',
