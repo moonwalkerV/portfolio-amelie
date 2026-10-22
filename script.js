@@ -1,5 +1,5 @@
 // ============================================
-// Amélie Philippon — Portfolio (v2)
+// Amélie Philippon, portfolio
 // ============================================
 
 (function () {
