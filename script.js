@@ -102,10 +102,10 @@
   // ---------- Machine à écrire du hero ----------
   var typer = $('#typer');
   var phrases = [
-    'Je transforme des idées en projets',
-    'Je pilote des projets de A à Z',
-    'Je crée des sites qui convertissent',
-    'Marketing, gestion de projet, IA'
+    'Je crée des sites qui donnent envie de vous appeler',
+    'Je m’occupe de votre projet du début à la fin',
+    'Un logo, un site, des posts : je gère',
+    'Basée à Béziers, je travaille aussi à distance'
   ];
   if (typer) {
     if (reduceMotion) {
@@ -317,12 +317,12 @@
       period: '2022 – 2026',
       role: 'Alternante responsable marketing (2 ans), puis cheffe de projet (2 ans)',
       contextLabel: 'Contexte',
-      context: 'Marque de produits au CBD, avec une boutique en ligne pour les particuliers et un espace réservé aux professionnels. Deux diplômes obtenus pendant cette alternance\u00a0: responsable marketing, puis cheffe de projet.',
+      context: 'Une marque de produits au CBD, avec une boutique en ligne pour les particuliers et un espace réservé aux professionnels. Quatre ans d’alternance, deux diplômes à la clé : responsable marketing, puis cheffe de projet.',
       did: [
-        'Création du site web B2C et B2B (front-end et back-end)',
-        'Design des étiquettes produit et des supports de communication',
-        'Gestion des réseaux sociaux',
-        'Stratégie produit, planification et coordination des projets'
+        'Création du site pour les particuliers et pour les professionnels, côté visible comme côté technique',
+        'Étiquettes des produits et supports de communication',
+        'Réseaux sociaux',
+        'Planification, coordination des projets et réflexion sur la stratégie produit'
       ],
       // Outils : liste de groupes { group: 'Titre', items: [...] } ; le titre est facultatif
       tools: [
@@ -338,10 +338,10 @@
       status: 'Projet client',
       period: 'Septembre – octobre 2026',
       contextLabel: 'Mission',
-      context: 'Refondre entièrement le site de cette aire naturelle\u00a0: mieux présenter le lieu et les séjours, faciliter la préparation de la venue et donner envie de réserver.',
+      context: 'Refaire entièrement le site de cette aire naturelle : mieux présenter le lieu et les séjours, aider à préparer la venue et donner envie de réserver.',
       did: [
-        'Refonte totale du site web (structure, contenus, design)',
-        'Mise en ligne d’un site clair, pensé pour donner envie de séjourner'
+        'Refonte totale du site (structure, textes, design)',
+        'Mise en ligne d’un site clair, qui donne envie de venir'
       ]
     }
   };
@@ -498,14 +498,14 @@
     var cfMessage = $('#cf-message'), cfCount = $('#cf-message-count');
     var SUBMIT_LABEL = cfSubmit.innerHTML;
     var ERROR_MSG = {
-      'cf-name': 'Merci d’indiquer votre nom et prénom.',
-      'cf-email': 'Merci d’indiquer une adresse e-mail valide (exemple\u00a0: nom@domaine.fr).',
+      'cf-name': 'Indiquez votre nom et prénom, pour que je sache à qui répondre.',
+      'cf-email': 'Cette adresse e-mail ne semble pas valide (exemple : nom@domaine.fr).',
       'cf-site': 'Cette adresse de site ne semble pas valide (exemple\u00a0: https://monsite.fr).',
-      'cf-need': 'Merci de choisir un type de besoin.',
-      'cf-budget': 'Merci de choisir un budget envisagé.',
-      'cf-delay': 'Merci de choisir un délai souhaité.',
-      'cf-message': 'Merci de décrire votre projet en quelques lignes.',
-      'cf-consent': 'Merci de cocher cette case pour envoyer votre demande.'
+      'cf-need': 'Choisissez le type de besoin le plus proche.',
+      'cf-budget': 'Choisissez une fourchette de budget, même approximative.',
+      'cf-delay': 'Choisissez un délai, même approximatif.',
+      'cf-message': 'Décrivez votre projet en quelques lignes.',
+      'cf-consent': 'Cochez cette case pour que je puisse traiter votre demande.'
     };
     var cfFields = ['cf-name', 'cf-email', 'cf-site', 'cf-need', 'cf-budget', 'cf-delay', 'cf-message', 'cf-consent'].map(function (id) { return document.getElementById(id); });
 
@@ -552,7 +552,7 @@
 
     var showError = function () {
       cfError.innerHTML = '';
-      cfError.appendChild(document.createTextNode('Votre demande n’a pas pu être envoyée. Vous pouvez réessayer, ou m’écrire directement à '));
+      cfError.appendChild(document.createTextNode('Oups, votre demande n’est pas partie. Réessayez, ou écrivez-moi directement à '));
       var a = document.createElement('a');
       a.href = 'mailto:' + CONTACT_EMAIL; a.textContent = CONTACT_EMAIL;
       cfError.appendChild(a);
