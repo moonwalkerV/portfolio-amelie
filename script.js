@@ -18,7 +18,7 @@
 
   // ---------- Sections activables ----------
   // SHOW_OFFERS : true = section « Mes formules » + lien « Offres » dans le menu ; false = bandeau de contact à la place.
-  var SHOW_OFFERS = false;
+  var SHOW_OFFERS = true;
   var setHidden = function (sel, hide) { $$(sel).forEach(function (el) { el.hidden = hide; }); };
   setHidden('#offres, .nav-links a[href="#offres"]', !SHOW_OFFERS);
   setHidden('.cta-band', SHOW_OFFERS);
@@ -468,16 +468,18 @@
   // ---------- Offres : prix (modifiables ici, un objet par offre) ----------
   // SHOW_PRICES : false = les offres « fixed » affichent « Devis gratuit sous 24 h » au lieu du prix.
   // price_mode : 'fixed' = prix affiché (selon SHOW_PRICES) ; 'quote' = « Sur devis », toujours.
-  var SHOW_PRICES = false;
+  var SHOW_PRICES = true;
   var QUOTE_LABEL = 'Sur devis';
   var HIDDEN_PRICE_LABEL = 'Devis gratuit sous 24 h';
   var OFFERS = {
-    'vitrine-essentiel': { price_mode: 'fixed', price: 'dès 990 € HT' },
-    'mini-identite':     { price_mode: 'fixed', price: 'dès 590 € HT' },
-    'pack-lancement':    { price_mode: 'fixed', price: 'dès 1 490 € HT' },
-    'vitrine-complete':  { price_mode: 'quote', price: 'dès 1 490 € HT' }, // price ignoré tant que price_mode = 'quote'
-    'suivi-mensuel':     { price_mode: 'quote', price: 'dès 39 € HT par mois' },
-    'gestion-de-projet': { price_mode: 'quote' }
+    'essentielle':       { price_mode: 'fixed', price: 'dès 950 €' },
+    'pack':              { price_mode: 'fixed', price: 'dès 2 690 €' },
+    'complete':          { price_mode: 'fixed', price: 'dès 1 990 €' },
+    'site-une-page':     { price_mode: 'fixed', price: 'dès 890 €' },
+    'site-vitrine':      { price_mode: 'fixed', price: 'dès 1 900 €' },
+    'site-vitrine-plus': { price_mode: 'fixed', price: 'dès 2 900 €' },
+    'pilotage':          { price_mode: 'fixed', price: '350 € la journée' },
+    'mensuel':           { price_mode: 'fixed', price: 'dès 30 € par mois' }
   };
   $$('.offre[data-offer]').forEach(function (card) {
     var o = OFFERS[card.getAttribute('data-offer')];
