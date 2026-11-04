@@ -660,8 +660,24 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
 .nav-logo{display:inline-flex;align-items:flex-start;gap:2px;}
 .nav-logo .star{width:11px;height:11px;color:var(--hot);margin-top:1px;}
-.bio-badge{display:flex;justify-content:center;align-self:start;margin-top:-90px;}
+.bio-badge{display:flex;justify-content:center;align-self:start;margin-top:-150px;}
 .bio-badge .rig{animation:sway 7s ease-in-out infinite;}
-.bio-badge .strap{height:clamp(90px,14vh,150px);}
+.bio-badge .strap{height:clamp(160px,21vh,200px);-webkit-mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.5) 50px,#000 115px);mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.5) 50px,#000 115px);box-shadow:none;}
+.bio-badge .badge3d{--bw:clamp(260px,min(27vw,44vh),350px);}
+.bio-badge .f-name{font-size:clamp(22px,2.2vw,28px);}
+.bio-badge .f-role{font-size:12px;margin-top:8px;line-height:1.4;}
+.bio-badge .f-sign{font-size:26px;}
+.bio-badge .f-info{padding:14px 16px 0;}
+.bio-badge .f-foot{padding:0 16px 14px;}
+.bio-badge .f-pill{font-size:10px;padding:5px 10px;}
+.bio-badge .face.back .inner{padding:22px 20px 16px;}
+.bio-badge .face.back h4{font-size:16px;margin-bottom:12px;}
+.bio-badge .b-row{gap:13px;padding:14px 0;}
+.bio-badge .b-row b{font-size:15px;margin-bottom:1px;}
+.bio-badge .b-row span{font-size:12.5px;line-height:1.5;margin-top:4px;}
+.bio-badge .chip{width:40px;height:40px;border-radius:12px;}
+.bio-badge .chip svg{width:20px;height:20px;}
+.bio-badge .b-sign{font-size:22px;}
+.bio-badge .b-foot>span{font-size:10.5px;}
 @media (prefers-reduced-motion:reduce){.bio-badge .rig,.hero-brand .star{animation:none !important;}}
 .hero .bg-word.bg-word-2,.hero .bg-word.bg-word-3{color:rgba(255,79,158,0.08);}
