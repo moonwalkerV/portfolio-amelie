@@ -124,21 +124,21 @@
       brand.classList.add('go');
       var startAt = 150 + (chars.length - 1) * 90 + 600;
       // 2. le point du i se contracte, l'étincelle naît, s'élève en tournant, puis se pose
-      dot.animate([{ transform: 'scale(1)', opacity: 1 }, { transform: 'scale(.4,.5)', opacity: 1, offset: .38 }, { transform: 'scale(1.18,.88)', opacity: 1, offset: .78 }, { transform: 'scale(1)', opacity: 1 }],
-        { duration: 800, delay: startAt, easing: 'ease-out', fill: 'none' });
+      dot.animate([{ transform: 'scale(1)', offset: 0 }, { transform: 'scale(1.12,.8)', offset: .12 }, { transform: 'scale(.14,.2)', offset: .46 }, { transform: 'scale(1.7,1.5)', offset: .56 }, { transform: 'scale(.82,.9)', offset: .76 }, { transform: 'scale(1)', offset: 1 }],
+        { duration: 900, delay: startAt, easing: 'ease-in-out', fill: 'none' });
       var a = star.animate([
         { opacity: 0, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.05) rotate(0deg)' },
         { opacity: 1, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3) rotate(40deg)', offset: .06 },
-        { opacity: 1, transform: 'translate(' + (dx * .7) + 'px,' + (dy - .55 * em) + 'px) scale(1.5) rotate(360deg)', offset: .38 },
+        { opacity: 1, transform: 'translate(' + (dx * .7) + 'px,' + (dy - .95 * em) + 'px) scale(1.7) rotate(360deg)', offset: .3 },
         { opacity: 1, transform: 'translate(' + (dx * .2) + 'px,' + (dy * .2 - .25 * em) + 'px) scale(1.25) rotate(620deg)', offset: .72 },
         { opacity: 1, transform: 'translate(0,0) scale(1) rotate(720deg)' }
-      ], { duration: 1500, delay: startAt + 250, easing: 'cubic-bezier(.45,.05,.25,1)', fill: 'both' });
+      ], { duration: 1500, delay: startAt + 410, easing: 'cubic-bezier(.12,.75,.3,1)', fill: 'both' });
       a.onfinish = function () {
         brand.classList.add('landed');
         star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.4) rotate(20deg)' }, { transform: 'scale(1)' }], { duration: 450, easing: 'ease-out' });
       };
       // 3. le reste du hero apparaît
-      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 1300);
+      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 1500);
     };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { requestAnimationFrame(run); });
     else run();
