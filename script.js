@@ -1,5 +1,5 @@
 // ============================================
-// Amélie Philippon, portfolio
+// Glimra (Amélie Philippon EI), portfolio
 // ============================================
 
 (function () {
