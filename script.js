@@ -124,8 +124,8 @@
       brand.classList.add('go');
       var startAt = 150 + (chars.length - 1) * 90 + 600;
       // 2. le point du i se contracte, l'étincelle naît, s'élève en tournant, puis se pose
-      dot.animate([{ transform: 'scale(1)', opacity: 1 }, { transform: 'scale(.7,1.25)', opacity: 1, offset: .35 }, { transform: 'scale(1.12,.9)', opacity: 1, offset: .7 }, { transform: 'scale(1)', opacity: 1 }],
-        { duration: 420, delay: startAt, easing: 'ease-out', fill: 'none' });
+      dot.animate([{ transform: 'scale(1)', opacity: 1 }, { transform: 'scale(.4,.5)', opacity: 1, offset: .38 }, { transform: 'scale(1.18,.88)', opacity: 1, offset: .78 }, { transform: 'scale(1)', opacity: 1 }],
+        { duration: 800, delay: startAt, easing: 'ease-out', fill: 'none' });
       var a = star.animate([
         { opacity: 0, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.05) rotate(0deg)' },
         { opacity: 1, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3) rotate(40deg)', offset: .06 },
