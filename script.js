@@ -61,11 +61,12 @@
   // ---------- Badge : retournement au mouvement de la souris ----------
   var badge = $('#badge');
   var hero = $('#top');
-  var heroVisible = true;
-  if (hero && 'IntersectionObserver' in window) {
+  var aboutEl = $('#about');
+  var heroVisible = true; // = badge visible (il est maintenant dans « À propos »)
+  if (aboutEl && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
       heroVisible = es[0].isIntersecting;
-    }, { threshold: 0.2 }).observe(hero);
+    }, { threshold: 0.2 }).observe(aboutEl);
   }
 
   function flip() { if (badge) badge.classList.toggle('flipped'); }

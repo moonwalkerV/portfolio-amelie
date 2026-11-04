@@ -68,7 +68,7 @@ body::before{
 .hero{
   min-height:max(100vh,720px);
   position:relative;overflow:hidden;
-  display:flex;flex-direction:column;align-items:center;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
   background:
     radial-gradient(ellipse 900px 500px at 50% 0%, rgba(255,79,158,0.18), transparent 60%),
     #1a1432;
@@ -648,3 +648,23 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
   .badge3d{transition:none;}
   .reveal,.reveal-blur{opacity:1;filter:none;transform:none;transition:none;}
 }
+
+/* ===== HERO (texte) + badge dans « Pourquoi travailler avec moi » ===== */
+.hero-in{position:relative;z-index:3;width:100%;padding-top:120px;padding-bottom:110px;}
+.hero-eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hot);margin-bottom:22px;}
+.hero-title{font-family:var(--font-display);font-weight:800;font-size:clamp(38px,6.4vw,92px);letter-spacing:-0.05em;line-height:1;max-width:14em;margin-bottom:26px;}
+.hero-sub{font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:rgba(247,240,248,0.8);max-width:36em;margin-bottom:34px;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;}
+.hero{min-height:max(88vh,640px);}
+.about-grid{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:clamp(32px,6vw,80px);align-items:start;}
+.about-badge{position:relative;display:flex;justify-content:center;margin-top:-130px;}
+.about-badge .rig{animation:sway 7s ease-in-out infinite;}
+.about-badge .strap{height:clamp(110px,16vh,170px);}
+.about-content .why-grid{grid-template-columns:1fr;}
+@media (max-width:860px){
+  .about-grid{grid-template-columns:1fr;}
+  .about-badge{margin-top:-130px;}
+  .hero-in{padding-top:100px;padding-bottom:90px;}
+}
+@media (prefers-reduced-motion:reduce){.about-badge .rig{animation:none !important;}}
+.hero .bg-word.bg-word-2,.hero .bg-word.bg-word-3{color:rgba(255,79,158,0.08);}
