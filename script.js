@@ -20,7 +20,7 @@
   // SHOW_OFFERS : true = section « Mes formules » + lien « Offres » dans le menu ; false = bandeau de contact à la place.
   var SHOW_OFFERS = true;
   var setHidden = function (sel, hide) { $$(sel).forEach(function (el) { el.hidden = hide; }); };
-  setHidden('#offres, .nav-links a[href="#offres"]', !SHOW_OFFERS);
+  setHidden("#offres, .nav-links a[href=\"/offres/\"]", !SHOW_OFFERS);
   setHidden('.cta-band', SHOW_OFFERS);
   // SHOW_STATS : true = bande des chiffres (4 / 4 / 2) ; false = section « Comment je travaille » à la place.
   var SHOW_STATS = false;
