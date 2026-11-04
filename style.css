@@ -708,3 +708,14 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .offres-page .offres{padding-top:140px}
 .offres-page .nav-links a[aria-current]{opacity:1;font-weight:700}
 .offres-more-all .offres-group{margin-top:48px}
+
+/* Intro du hero : « Glimra » se construit, l'étincelle sort du point du i et se pose */
+.hero-brand .ch{display:inline-block;position:relative;}
+.hero-brand .ch-i .stem{display:block;font-weight:inherit;clip-path:inset(.285em -.2em 0 -.2em);}
+.hero-brand .ch-i .i-dot{position:absolute;left:50%;top:.015em;width:.23em;height:.23em;margin-left:-.115em;border-radius:50%;background:currentColor;}
+.js .hero-brand:not(.go) .ch,.js .hero-brand:not(.go) .star{opacity:0;}
+.js .hero:not(.go) .hero-tag,.js .hero:not(.go) .hero-sub,.js .hero:not(.go) .hero-btns,.js .hero:not(.go) .scroll-hint{opacity:0;transform:translateY(14px);}
+.hero .hero-tag,.hero .hero-sub,.hero .hero-btns,.hero .scroll-hint{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.25,1);}
+.hero-brand .star{animation:none;}
+.hero-brand.landed .star{animation:twinkle 3.2s ease-in-out infinite;}
+@media (prefers-reduced-motion:reduce){.hero-brand .i-dot{display:none;}}

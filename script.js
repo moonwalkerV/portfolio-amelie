@@ -100,6 +100,50 @@
     }
   }
 
+  // ---------- Intro du hero : lettres, puis l'étincelle sort du point du « i » ----------
+  (function () {
+    var brand = $('.hero-brand');
+    if (!brand) return;
+    var star = $('.star', brand), dot = $('.i-dot', brand), chars = $$('.ch', brand);
+    var done = function () { brand.classList.add('go', 'landed'); if (hero) hero.classList.add('go'); };
+    if (reduceMotion || !brand.animate || !star || !dot) { done(); return; }
+    var run = function () {
+      // mesures faites avant d'afficher quoi que ce soit (le layout ne dépend pas de l'opacité)
+      var dr = dot.getBoundingClientRect(), sr = star.getBoundingClientRect();
+      var dx = (dr.left + dr.width / 2) - (sr.left + sr.width / 2);
+      var dy = (dr.top + dr.height / 2) - (sr.top + sr.height / 2);
+      var em = parseFloat(getComputedStyle(brand).fontSize);
+      // 1. les lettres jaillissent, avec un petit rebond
+      chars.forEach(function (c, i) {
+        c.animate([
+          { opacity: 0, transform: 'translateY(.5em) scale(.6) rotate(-6deg)' },
+          { opacity: 1, transform: 'translateY(-.06em) scale(1.06) rotate(1deg)', offset: .65 },
+          { opacity: 1, transform: 'none' }
+        ], { duration: 750, delay: 150 + i * 90, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
+      });
+      brand.classList.add('go');
+      var startAt = 150 + (chars.length - 1) * 90 + 600;
+      // 2. le point du i se contracte, l'étincelle naît, s'élève en tournant, puis se pose
+      dot.animate([{ transform: 'scale(1)', opacity: 1 }, { transform: 'scale(.7,1.25)', opacity: 1, offset: .5 }, { transform: 'scale(0)', opacity: 0 }],
+        { duration: 420, delay: startAt, easing: 'ease-in', fill: 'both' });
+      var a = star.animate([
+        { opacity: 0, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.05) rotate(0deg)' },
+        { opacity: 1, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3) rotate(40deg)', offset: .06 },
+        { opacity: 1, transform: 'translate(' + (dx * .7) + 'px,' + (dy - .55 * em) + 'px) scale(1.5) rotate(360deg)', offset: .38 },
+        { opacity: 1, transform: 'translate(' + (dx * .2) + 'px,' + (dy * .2 - .25 * em) + 'px) scale(1.25) rotate(620deg)', offset: .72 },
+        { opacity: 1, transform: 'translate(0,0) scale(1) rotate(720deg)' }
+      ], { duration: 1500, delay: startAt + 250, easing: 'cubic-bezier(.45,.05,.25,1)', fill: 'both' });
+      a.onfinish = function () {
+        brand.classList.add('landed');
+        star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.4) rotate(20deg)' }, { transform: 'scale(1)' }], { duration: 450, easing: 'ease-out' });
+      };
+      // 3. le reste du hero apparaît
+      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 1300);
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { requestAnimationFrame(run); });
+    else run();
+  })();
+
   // ---------- Machine à écrire du hero ----------
   var typer = $('#typer');
   var phrases = [
