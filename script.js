@@ -61,8 +61,8 @@
   // ---------- Badge : retournement au mouvement de la souris ----------
   var badge = $('#badge');
   var hero = $('#top');
-  var aboutEl = $('#about');
-  var heroVisible = true; // = badge visible (il est maintenant dans « À propos »)
+  var aboutEl = $('.bio');
+  var heroVisible = true; // = badge visible (il est maintenant dans la section sous l’accueil)
   if (aboutEl && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
       heroVisible = es[0].isIntersecting;
