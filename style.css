@@ -255,8 +255,10 @@ body::before{
 .proj-img img,.bio-device img{position:relative;}
 @keyframes float{0%,100%{transform:rotate(4deg) translateY(0);}50%{transform:rotate(3deg) translateY(-10px);}}
 
-.bio-text h1{font-size:clamp(34px,4.6vw,60px);line-height:1.04;font-weight:800;margin-bottom:26px;}
-.bio-text p{font-size:15.5px;line-height:1.7;color:#5d5266;max-width:470px;}
+.bio-text h1,.bio-text h2{font-size:clamp(34px,4.2vw,56px);line-height:1.06;font-weight:800;letter-spacing:-0.045em;margin-bottom:34px;}
+.bio-text p{font-size:clamp(16px,1.35vw,18px);line-height:1.75;color:#4d4256;max-width:520px;margin-bottom:18px;}
+.bio-text p.bio-lead{font-family:var(--font-display);font-weight:700;font-size:clamp(19px,1.7vw,23px);line-height:1.35;letter-spacing:-0.02em;color:var(--ink);}
+.bio-text p:last-child{margin-bottom:0;}
 .type-wrap{position:relative;text-wrap:wrap;} /* pas de balance ici : le texte tapé lettre par lettre changerait de retours à la ligne en cours de frappe */
 .type-wrap .ghost{visibility:hidden;display:block;}
 .type-wrap .live{position:absolute;left:0;top:0;right:0;display:block;}
