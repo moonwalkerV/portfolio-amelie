@@ -732,3 +732,10 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .faq details p{margin-top:10px;font-size:15px;line-height:1.65;color:rgba(247,240,248,.74)}
 .do-left h3 a{color:inherit;text-decoration:none}
 .do-left h3 a:hover{color:var(--hot)}
+
+/* Hero : petites étoiles discrètes à la place des mots en filigrane */
+.hero-spark{position:absolute;width:14px;height:14px;background:var(--hot);opacity:.5;clip-path:path("M7 0C7.4 3.6 9.6 5.8 14 7 9.6 8.2 7.4 10.4 7 14 6.6 10.4 4.4 8.2 0 7 4.4 5.8 6.6 3.6 7 0Z");animation:twinkle 4s ease-in-out infinite;pointer-events:none;z-index:1}
+.hs1{top:22%;left:12%}.hs2{top:30%;right:14%;width:10px;height:10px;animation-delay:.8s}.hs3{top:68%;left:18%;width:9px;height:9px;animation-delay:1.6s}.hs4{top:74%;right:20%;animation-delay:2.2s}.hs5{top:48%;left:6%;width:8px;height:8px;animation-delay:3s}
+@media (prefers-reduced-motion:reduce){.hero-spark{animation:none}}
+.hero-tag{max-width:22em;margin-left:auto;margin-right:auto;line-height:1.2}
+.hero-btns .btn-outline-light{align-self:center}
