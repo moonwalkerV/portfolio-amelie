@@ -690,3 +690,11 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .f-info .f-sign{display:block;transform:rotate(-3deg);transform-origin:left center;margin-top:6px;font-size:22px;}
 .bio-badge .f-info .f-sign{font-size:30px;margin-top:8px;}
 .f-info .f-role{margin-top:6px;}
+.bio-badge .face.back .inner{padding:24px 22px 18px;}
+.bio-badge .b-row{padding:20px 0;align-items:center;}
+.bio-badge .b-row b{font-size:17px;margin-bottom:3px;}
+.bio-badge .b-row span{font-size:13.5px;margin-top:0;}
+.bio-badge .chip{width:44px;height:44px;}
+.bio-badge .chip svg{width:22px;height:22px;}
+.bio-badge .face.back h4{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#8a8092;margin-bottom:6px;}
+.bio-badge .b-sign{font-size:24px;}
