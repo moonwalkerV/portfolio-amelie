@@ -147,17 +147,16 @@
   // ---------- Machine à écrire du hero ----------
   var typer = $('#typer');
   var phrases = [
-    'Je crée des sites qui donnent envie de vous appeler',
-    'Je m’occupe de votre projet du début à la fin',
-    'Un logo, un site, des posts\u00a0: je gère',
-    'Basée à Béziers, je travaille aussi à distance'
+    'Identité visuelle dès 950\u00a0€',
+    'Site web dès 590\u00a0€',
+    'Devis gratuit, prix annoncés d’avance'
   ];
   if (typer) {
     if (reduceMotion) {
       typer.textContent = phrases[0];
     } else {
       var pi = 0, ci = 0, deleting = false;
-      (function tick() {
+      setTimeout(function tick() {
         var p = phrases[pi];
         if (!deleting) {
           ci++;
@@ -169,7 +168,7 @@
         typer.textContent = p.slice(0, ci);
         if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; return setTimeout(tick, 350); }
         setTimeout(tick, 28);
-      })();
+      }, 3300);
     }
   }
 
@@ -520,7 +519,7 @@
     'essentielle':       { price_mode: 'fixed', price: 'dès 950 €' },
     'pack':              { price_mode: 'fixed', price: 'dès 2 690 €' },
     'complete':          { price_mode: 'fixed', price: 'dès 1 990 €' },
-    'site-une-page':     { price_mode: 'fixed', price: 'dès 890 €' },
+    'site-une-page':     { price_mode: 'fixed', price: 'dès 590 €' },
     'site-vitrine':      { price_mode: 'fixed', price: 'dès 1 900 €' },
     'site-vitrine-plus': { price_mode: 'fixed', price: 'dès 2 900 €' },
     'pilotage':          { price_mode: 'fixed', price: '350 € la journée' },
