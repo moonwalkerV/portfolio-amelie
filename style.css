@@ -68,7 +68,7 @@ body::before{
 .hero{
   min-height:max(100vh,720px);
   position:relative;overflow:hidden;
-  display:flex;flex-direction:column;align-items:center;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
   background:
     radial-gradient(ellipse 900px 500px at 50% 0%, rgba(255,79,158,0.18), transparent 60%),
     #1a1432;
@@ -255,8 +255,10 @@ body::before{
 .proj-img img,.bio-device img{position:relative;}
 @keyframes float{0%,100%{transform:rotate(4deg) translateY(0);}50%{transform:rotate(3deg) translateY(-10px);}}
 
-.bio-text h1{font-size:clamp(34px,4.6vw,60px);line-height:1.04;font-weight:800;margin-bottom:26px;}
-.bio-text p{font-size:15.5px;line-height:1.7;color:#5d5266;max-width:470px;}
+.bio-text h1,.bio-text h2{font-size:clamp(34px,4.2vw,56px);line-height:1.06;font-weight:800;letter-spacing:-0.045em;margin-bottom:34px;}
+.bio-text p{font-size:clamp(16px,1.35vw,18px);line-height:1.75;color:#4d4256;max-width:520px;margin-bottom:18px;}
+.bio-text p.bio-lead{font-family:var(--font-display);font-weight:700;font-size:clamp(19px,1.7vw,23px);line-height:1.35;letter-spacing:-0.02em;color:var(--ink);}
+.bio-text p:last-child{margin-bottom:0;}
 .type-wrap{position:relative;text-wrap:wrap;} /* pas de balance ici : le texte tapé lettre par lettre changerait de retours à la ligne en cours de frappe */
 .type-wrap .ghost{visibility:hidden;display:block;}
 .type-wrap .live{position:absolute;left:0;top:0;right:0;display:block;}
@@ -648,3 +650,92 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
   .badge3d{transition:none;}
   .reveal,.reveal-blur{opacity:1;filter:none;transform:none;transition:none;}
 }
+
+/* ===== HERO : la marque en grand + badge dans la section « une seule interlocutrice » ===== */
+.hero{align-items:center;justify-content:center;text-align:center;min-height:max(92vh,640px);}
+.hero-in{position:relative;z-index:3;width:100%;display:flex;flex-direction:column;align-items:center;padding-top:110px;padding-bottom:100px;}
+.hero-brand{font-family:var(--font-display);font-weight:800;font-size:clamp(76px,17vw,260px);letter-spacing:-0.06em;line-height:.95;display:flex;align-items:flex-start;gap:.04em;}
+.hero-brand .star{width:.34em;height:.34em;color:var(--hot);flex:none;margin-top:.04em;animation:twinkle 3.2s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0);}50%{transform:scale(1.18) rotate(12deg);}}
+.hero-tag{font-family:var(--font-display);font-weight:700;font-size:clamp(18px,2.6vw,34px);letter-spacing:-0.03em;margin-top:18px;}
+.hero-sub{font-size:clamp(14px,1.3vw,17px);color:rgba(247,240,248,0.72);margin-top:14px;margin-bottom:38px;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.nav-logo{display:inline-flex;align-items:flex-start;gap:2px;}
+.nav-logo .star{width:11px;height:11px;color:var(--hot);margin-top:1px;}
+.bio-badge{display:flex;justify-content:center;align-self:start;margin-top:-150px;}
+.bio-badge .rig{animation:sway 7s ease-in-out infinite;}
+.bio-badge .strap{height:clamp(160px,21vh,200px);-webkit-mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.5) 50px,#000 115px);mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.5) 50px,#000 115px);box-shadow:none;}
+.bio-badge .badge3d{--bw:clamp(260px,min(27vw,44vh),350px);}
+.bio-badge .f-name{font-size:clamp(22px,2.2vw,28px);}
+.bio-badge .f-role{font-size:12px;margin-top:8px;line-height:1.4;}
+.bio-badge .f-sign{font-size:26px;}
+.bio-badge .f-info{padding:14px 16px 0;}
+.bio-badge .f-foot{padding:0 16px 14px;}
+.bio-badge .f-pill{font-size:10px;padding:5px 10px;}
+.bio-badge .face.back .inner{padding:22px 20px 16px;}
+.bio-badge .face.back h4{font-size:16px;margin-bottom:12px;}
+.bio-badge .b-row{gap:13px;padding:14px 0;}
+.bio-badge .b-row b{font-size:15px;margin-bottom:1px;}
+.bio-badge .b-row span{font-size:12.5px;line-height:1.5;margin-top:4px;}
+.bio-badge .chip{width:40px;height:40px;border-radius:12px;}
+.bio-badge .chip svg{width:20px;height:20px;}
+.bio-badge .b-sign{font-size:22px;}
+.bio-badge .b-foot>span{font-size:10.5px;}
+@media (prefers-reduced-motion:reduce){.bio-badge .rig,.hero-brand .star{animation:none !important;}}
+.hero .bg-word.bg-word-2,.hero .bg-word.bg-word-3{color:rgba(255,79,158,0.08);}
+.bio-badge{position:relative;}
+.bio-hello{display:block;font-family:var(--font-hand);font-size:clamp(26px,2.8vw,36px);color:#e0245e;transform:rotate(-3deg);transform-origin:left center;margin-bottom:10px;line-height:1.1;}
+.f-name{display:inline-flex;align-items:flex-start;gap:3px;}
+.f-name .star{width:.52em;height:.52em;color:var(--hot);flex:none;margin-top:.02em;}
+.f-info .f-sign{display:block;transform:rotate(-3deg);transform-origin:left center;margin-top:6px;font-size:22px;}
+.bio-badge .f-info .f-sign{font-size:30px;margin-top:8px;}
+.f-info .f-role{margin-top:6px;}
+.bio-badge .face.back .inner{padding:24px 22px 18px;}
+.bio-badge .b-row{padding:20px 0;align-items:center;}
+.bio-badge .b-row b{font-size:17px;margin-bottom:3px;}
+.bio-badge .b-row span{font-size:13.5px;margin-top:0;}
+.bio-badge .chip{width:44px;height:44px;}
+.bio-badge .chip svg{width:22px;height:22px;}
+.bio-badge .face.back h4{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#8a8092;margin-bottom:6px;}
+.bio-badge .b-sign{font-size:24px;}
+.bio-text p.bio-zone{font-size:clamp(14px,1.15vw,15.5px);color:#6b5f75;padding-top:6px;}
+.about-zone{font-size:clamp(15px,1.3vw,17px);line-height:1.6;color:rgba(247,240,248,0.78);margin:0 0 28px;max-width:40em;}
+
+/* Formules : 3 en avant, lien vers la page Offres */
+.offres-all{text-align:center;margin-top:32px}
+.btn-outline-light{display:inline-block;color:#fff;font-weight:600;padding:14px 26px;border:1px solid rgba(255,255,255,.4);border-radius:999px;text-decoration:none;transition:background .2s}
+.btn-outline-light:hover{background:rgba(255,255,255,.1)}
+.offres-page .offres{padding-top:140px}
+.offres-page .nav-links a[aria-current]{opacity:1;font-weight:700}
+.offres-more-all .offres-group{margin-top:48px}
+
+/* Intro du hero : « Glimra » se construit, l'étincelle sort du point du i et se pose */
+.hero-brand .ch{display:inline-block;position:relative;}
+.hero-brand .ch-i .stem{display:block;font-weight:inherit;clip-path:inset(.285em -.2em 0 -.2em);}
+.hero-brand .ch-i .i-dot{position:absolute;left:50%;top:.015em;width:.23em;height:.23em;margin-left:-.115em;border-radius:50%;background:currentColor;}
+.js .hero-brand:not(.go) .ch,.js .hero-brand:not(.go) .star{opacity:0;}
+.js .hero:not(.go) .typer,.js .hero:not(.go) .hero-tag,.js .hero:not(.go) .hero-sub,.js .hero:not(.go) .hero-btns,.js .hero:not(.go) .scroll-hint{opacity:0;transform:translateY(14px);}
+.hero .hero-tag,.hero .hero-sub,.hero .hero-btns,.hero .scroll-hint{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.25,1);}
+.hero-brand .star{animation:none;}
+.hero-brand.landed .star{animation:twinkle 3.2s ease-in-out infinite;}
+@media (prefers-reduced-motion:reduce){.hero-brand .i-dot{display:none;}}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto 48px}
+.faq h3{font-size:clamp(22px,2.4vw,30px);font-weight:800;letter-spacing:-0.04em;color:var(--cream);margin-bottom:18px}
+.faq details{border-top:1px solid rgba(255,255,255,.14);padding:16px 0}
+.faq details:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.faq summary{cursor:pointer;font-weight:600;color:var(--cream);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--hot);font-weight:800}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin-top:10px;font-size:15px;line-height:1.65;color:rgba(247,240,248,.74)}
+.do-left h3 a{color:inherit;text-decoration:none}
+.do-left h3 a:hover{color:var(--hot)}
+
+/* Hero : petites étoiles discrètes à la place des mots en filigrane */
+.hero-spark{position:absolute;width:14px;height:14px;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c.7 6.6 4.9 10.8 12 12-7.1 1.2-11.3 5.4-12 12-.7-6.6-4.9-10.8-12-12C7.1 10.8 11.3 6.6 12 0z' fill='%23ff4f9e'/%3E%3C/svg%3E") center/contain no-repeat;animation:twinkle 4s ease-in-out infinite;pointer-events:none;z-index:1}
+.hs1{top:22%;left:12%}.hs2{top:30%;right:14%;width:10px;height:10px;animation-delay:.8s}.hs3{top:68%;left:18%;width:9px;height:9px;animation-delay:1.6s}.hs4{top:74%;right:20%;animation-delay:2.2s}.hs5{top:48%;left:6%;width:8px;height:8px;animation-delay:3s}
+@media (prefers-reduced-motion:reduce){.hero-spark{animation:none}}
+.hero-tag{max-width:22em;margin:18px auto 36px;line-height:1.2}
+.hero-btns .btn-outline-light{align-self:center}

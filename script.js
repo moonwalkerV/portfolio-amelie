@@ -12,7 +12,7 @@
 
   // ---------- Réglages du formulaire de contact (à renseigner) ----------
   var WEB3FORMS_KEY = '438bee4e-d1ef-4373-87de-dc472d92baaf'; // clé d'accès Web3Forms (web3forms.com) ; si elle vaut « VOTRE_CLE » ou est vide, l'envoi affiche le message d'erreur
-  var BOOKING_URL = '';            // URL de réservation (Calendly, Cal.com…) : bouton « Réserver un échange » après l'envoi, et boutons « Réserver un appel » ; vide = pas de bouton après l'envoi, et « Réserver un appel » ouvre un e-mail
+  var BOOKING_URL = 'https://cal.com/amelie-zzqj3n/30min';            // URL de réservation (Calendly, Cal.com…) : bouton « Réserver un échange » après l'envoi, et boutons « Réserver un appel » ; vide = pas de bouton après l'envoi, et « Réserver un appel » ouvre un e-mail
   var MENTIONS_URL = 'mentions-legales/#donnees-personnelles'; // page des mentions légales (section « Données personnelles »), ouverte dans un nouvel onglet
   var CONTACT_EMAIL = 'amelie.philippon@live.fr'; // e-mail de secours affiché si l'envoi échoue
 
@@ -20,7 +20,7 @@
   // SHOW_OFFERS : true = section « Mes formules » + lien « Offres » dans le menu ; false = bandeau de contact à la place.
   var SHOW_OFFERS = true;
   var setHidden = function (sel, hide) { $$(sel).forEach(function (el) { el.hidden = hide; }); };
-  setHidden('#offres, .nav-links a[href="#offres"]', !SHOW_OFFERS);
+  setHidden("#offres, .nav-links a[href=\"/offres/\"]", !SHOW_OFFERS);
   setHidden('.cta-band', SHOW_OFFERS);
   // SHOW_STATS : true = bande des chiffres (4 / 4 / 2) ; false = section « Comment je travaille » à la place.
   var SHOW_STATS = false;
@@ -61,11 +61,12 @@
   // ---------- Badge : retournement au mouvement de la souris ----------
   var badge = $('#badge');
   var hero = $('#top');
-  var heroVisible = true;
-  if (hero && 'IntersectionObserver' in window) {
+  var aboutEl = $('.bio');
+  var heroVisible = true; // = badge visible (il est maintenant dans la section sous l’accueil)
+  if (aboutEl && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
       heroVisible = es[0].isIntersecting;
-    }, { threshold: 0.2 }).observe(hero);
+    }, { threshold: 0.2 }).observe(aboutEl);
   }
 
   function flip() { if (badge) badge.classList.toggle('flipped'); }
@@ -99,20 +100,63 @@
     }
   }
 
+  // ---------- Intro du hero : lettres, puis l'étincelle sort du point du « i » ----------
+  (function () {
+    var brand = $('.hero-brand');
+    if (!brand) return;
+    var star = $('.star', brand), dot = $('.i-dot', brand), chars = $$('.ch', brand);
+    var done = function () { brand.classList.add('go', 'landed'); if (hero) hero.classList.add('go'); };
+    if (reduceMotion || !brand.animate || !star || !dot) { done(); return; }
+    var run = function () {
+      // mesures faites avant d'afficher quoi que ce soit (le layout ne dépend pas de l'opacité)
+      var dr = dot.getBoundingClientRect(), sr = star.getBoundingClientRect();
+      var dx = (dr.left + dr.width / 2) - (sr.left + sr.width / 2);
+      var dy = (dr.top + dr.height / 2) - (sr.top + sr.height / 2);
+      var em = parseFloat(getComputedStyle(brand).fontSize);
+      // 1. les lettres jaillissent, avec un petit rebond
+      chars.forEach(function (c, i) {
+        c.animate([
+          { opacity: 0, transform: 'translateY(.5em) scale(.6) rotate(-6deg)' },
+          { opacity: 1, transform: 'translateY(-.06em) scale(1.06) rotate(1deg)', offset: .65 },
+          { opacity: 1, transform: 'none' }
+        ], { duration: 750, delay: 150 + i * 90, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
+      });
+      brand.classList.add('go');
+      var startAt = 150 + (chars.length - 1) * 90 + 600;
+      // 2. le point du i se contracte, l'étincelle naît, s'élève en tournant, puis se pose
+      dot.animate([{ transform: 'scale(1)', offset: 0 }, { transform: 'scale(1.12,.8)', offset: .12 }, { transform: 'scale(.14,.2)', offset: .46 }, { transform: 'scale(1.7,1.5)', offset: .56 }, { transform: 'scale(.82,.9)', offset: .76 }, { transform: 'scale(1)', offset: 1 }],
+        { duration: 900, delay: startAt, easing: 'ease-in-out', fill: 'none' });
+      var a = star.animate([
+        { opacity: 0, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.05) rotate(0deg)' },
+        { opacity: 1, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3) rotate(40deg)', offset: .06 },
+        { opacity: 1, transform: 'translate(' + (dx * .7) + 'px,' + (dy - .95 * em) + 'px) scale(1.7) rotate(360deg)', offset: .3 },
+        { opacity: 1, transform: 'translate(' + (dx * .2) + 'px,' + (dy * .2 - .25 * em) + 'px) scale(1.25) rotate(620deg)', offset: .72 },
+        { opacity: 1, transform: 'translate(0,0) scale(1) rotate(720deg)' }
+      ], { duration: 1500, delay: startAt + 410, easing: 'cubic-bezier(.12,.75,.3,1)', fill: 'both' });
+      a.onfinish = function () {
+        brand.classList.add('landed');
+        star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.4) rotate(20deg)' }, { transform: 'scale(1)' }], { duration: 450, easing: 'ease-out' });
+      };
+      // 3. le reste du hero apparaît
+      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 1500);
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { requestAnimationFrame(run); });
+    else run();
+  })();
+
   // ---------- Machine à écrire du hero ----------
   var typer = $('#typer');
   var phrases = [
-    'Je crée des sites qui donnent envie de vous appeler',
-    'Je m’occupe de votre projet du début à la fin',
-    'Un logo, un site, des posts\u00a0: je gère',
-    'Basée à Béziers, je travaille aussi à distance'
+    'Identité visuelle dès 950\u00a0€',
+    'Site web dès 590\u00a0€',
+    'Devis gratuit, prix annoncés d’avance'
   ];
   if (typer) {
     if (reduceMotion) {
       typer.textContent = phrases[0];
     } else {
       var pi = 0, ci = 0, deleting = false;
-      (function tick() {
+      setTimeout(function tick() {
         var p = phrases[pi];
         if (!deleting) {
           ci++;
@@ -124,7 +168,7 @@
         typer.textContent = p.slice(0, ci);
         if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; return setTimeout(tick, 350); }
         setTimeout(tick, 28);
-      })();
+      }, 3300);
     }
   }
 
@@ -475,7 +519,7 @@
     'essentielle':       { price_mode: 'fixed', price: 'dès 950 €' },
     'pack':              { price_mode: 'fixed', price: 'dès 2 690 €' },
     'complete':          { price_mode: 'fixed', price: 'dès 1 990 €' },
-    'site-une-page':     { price_mode: 'fixed', price: 'dès 890 €' },
+    'site-une-page':     { price_mode: 'fixed', price: 'dès 590 €' },
     'site-vitrine':      { price_mode: 'fixed', price: 'dès 1 900 €' },
     'site-vitrine-plus': { price_mode: 'fixed', price: 'dès 2 900 €' },
     'pilotage':          { price_mode: 'fixed', price: '350 € la journée' },
@@ -505,11 +549,10 @@
       'cf-site': 'Cette adresse de site ne semble pas valide (exemple\u00a0: https://monsite.fr).',
       'cf-need': 'Choisissez le type de besoin le plus proche.',
       'cf-budget': 'Choisissez une fourchette de budget, même approximative.',
-      'cf-delay': 'Choisissez un délai, même approximatif.',
       'cf-message': 'Décrivez votre projet en quelques lignes.',
       'cf-consent': 'Cochez cette case pour que je puisse traiter votre demande.'
     };
-    var cfFields = ['cf-name', 'cf-email', 'cf-site', 'cf-need', 'cf-budget', 'cf-delay', 'cf-message', 'cf-consent'].map(function (id) { return document.getElementById(id); });
+    var cfFields = ['cf-name', 'cf-email', 'cf-site', 'cf-need', 'cf-budget', 'cf-message', 'cf-consent'].map(function (id) { return document.getElementById(id); });
 
     var legal = $('#contactLegal');
     if (legal && MENTIONS_URL) legal.href = MENTIONS_URL;
@@ -607,7 +650,6 @@
         'Site actuel': normalizeSite(val('cf-site')) || 'Non renseigné',
         'Type de besoin': val('cf-need'),
         'Budget envisagé': val('cf-budget'),
-        'Délai souhaité': val('cf-delay'),
         'Message': cfMessage.value.trim(),
         'Consentement': 'Oui\u00a0: accepte que ses données soient utilisées pour répondre à sa demande'
       };
