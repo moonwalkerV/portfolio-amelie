@@ -683,3 +683,6 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .bio-badge .b-foot>span{font-size:10.5px;}
 @media (prefers-reduced-motion:reduce){.bio-badge .rig,.hero-brand .star{animation:none !important;}}
 .hero .bg-word.bg-word-2,.hero .bg-word.bg-word-3{color:rgba(255,79,158,0.08);}
+.bio-badge{position:relative;}
+.bio-badge .bio-sign{top:auto;bottom:-40px;right:-2%;z-index:6;font-size:clamp(26px,2.8vw,36px);white-space:nowrap;}
+@media (max-width:760px){.bio-badge .bio-sign{right:50%;transform:translateX(50%) rotate(-5deg);bottom:-34px;}.bio-grid{gap:64px;}}
