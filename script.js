@@ -550,11 +550,10 @@
       'cf-site': 'Cette adresse de site ne semble pas valide (exemple\u00a0: https://monsite.fr).',
       'cf-need': 'Choisissez le type de besoin le plus proche.',
       'cf-budget': 'Choisissez une fourchette de budget, même approximative.',
-      'cf-delay': 'Choisissez un délai, même approximatif.',
       'cf-message': 'Décrivez votre projet en quelques lignes.',
       'cf-consent': 'Cochez cette case pour que je puisse traiter votre demande.'
     };
-    var cfFields = ['cf-name', 'cf-email', 'cf-site', 'cf-need', 'cf-budget', 'cf-delay', 'cf-message', 'cf-consent'].map(function (id) { return document.getElementById(id); });
+    var cfFields = ['cf-name', 'cf-email', 'cf-site', 'cf-need', 'cf-budget', 'cf-message', 'cf-consent'].map(function (id) { return document.getElementById(id); });
 
     var legal = $('#contactLegal');
     if (legal && MENTIONS_URL) legal.href = MENTIONS_URL;
@@ -652,7 +651,6 @@
         'Site actuel': normalizeSite(val('cf-site')) || 'Non renseigné',
         'Type de besoin': val('cf-need'),
         'Budget envisagé': val('cf-budget'),
-        'Délai souhaité': val('cf-delay'),
         'Message': cfMessage.value.trim(),
         'Consentement': 'Oui\u00a0: accepte que ses données soient utilisées pour répondre à sa demande'
       };

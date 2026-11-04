@@ -133,7 +133,7 @@
     <div class="do-row reveal">
       <div class="do-left">
         <div class="chip chip-peche"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4-8 4 5 3-4 5 7" stroke="#b5660f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Identité visuelle</h3>
+        <h3><a href="/offres/#identite">Identité visuelle</a></h3>
       </div>
       <p>Logo, couleurs, charte et supports&nbsp;: une image cohérente, qui vous ressemble.</p>
     </div>
@@ -141,7 +141,7 @@
     <div class="do-row reveal">
       <div class="do-left">
         <div class="chip chip-lavande"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="#5a3fc0" stroke-width="2"/><path d="M8 21h8M12 18v3" stroke="#5a3fc0" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3>Site web</h3>
+        <h3><a href="/offres/#sites">Site web</a></h3>
       </div>
       <p>Un site de 1 à 8 pages, lisible sur mobile, mis en ligne. Je vous montre en 1&nbsp;h comment le gérer.</p>
     </div>
@@ -149,7 +149,7 @@
     <div class="do-row reveal">
       <div class="do-left">
         <div class="chip chip-lavande"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#5a3fc0" stroke-width="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#5a3fc0" stroke-width="2"/></svg></div>
-        <h3>Suivi de projet</h3>
+        <h3><a href="/offres/#suivi">Suivi de projet</a></h3>
       </div>
       <p>Je cadre, je tiens le planning et je coordonne tout le monde. Vous savez toujours où on en est.</p>
     </div>
@@ -248,11 +248,6 @@
   </div>
 </section>
 
-<!-- BANDE D'OUTILS (sombre, entre deux zones roses) -->
-<div class="marquee" data-nav="dark" aria-hidden="true">
-  <div class="marquee-track" id="marqueeTrack"></div>
-</div>
-
 <!-- PROJETS (rose) -->
 <section class="work" id="work" data-nav="pink">
   <div class="work-head reveal">
@@ -294,6 +289,14 @@
         <article class="why-card reveal"><h3>Une seule interlocutrice</h3><p>Site, logo, réseaux, planning&nbsp;: je m’occupe de tout. Vous n’avez pas à coordonner cinq personnes, ni à raconter votre projet cinq fois.</p></article>
         <article class="why-card reveal"><h3>Quatre ans de terrain</h3><p>J’ai travaillé quatre ans en entreprise, avec des délais, des budgets et des décisions à prendre. Je sais ce qui est réaliste, et je vous le dis franchement.</p></article>
         <article class="why-card reveal"><h3>Les bons outils</h3><p>Je travaille avec des outils modernes, dont l’IA, pour vous faire gagner du temps. Les choix de fond (le message, les images, la structure des pages) restent les miens, et je relis tout avant de vous livrer.</p></article>
+      </div>
+      <div class="faq reveal">
+        <h3>Questions fréquentes</h3>
+        <details><summary>Combien de temps faut-il&nbsp;?</summary><p>De 2 semaines pour un site d’une page à 7 à 9 semaines pour une identité complète avec site. Le délai exact est écrit dans le devis.</p></details>
+        <details><summary>Comment se passe le paiement&nbsp;?</summary><p>Par étapes, et dès 1&nbsp;500&nbsp;€ le solde peut être étalé sur 3&nbsp;mois sans frais.</p></details>
+        <details><summary>Et si je veux des retouches&nbsp;?</summary><p>Les allers-retours prévus sont écrits dans le devis. Un aller-retour supplémentaire coûte 90&nbsp;€, toujours annoncé avant.</p></details>
+        <details><summary>Dois-je fournir les textes et les photos&nbsp;?</summary><p>Pas forcément. Je vous guide sur ce qu’il faut rassembler, et la formule Site vitrine+ inclut la rédaction des textes.</p></details>
+        <details><summary>Le site et le logo m’appartiennent-ils&nbsp;?</summary><p>Oui. Le site est hébergé à votre nom et vous recevez les fichiers de votre identité à la livraison.</p></details>
       </div>
       <p class="about-zone reveal">Basée à Béziers, je me déplace à Montpellier et Narbonne pour vos rendez-vous, et je travaille aussi à distance.</p>
       <div class="chips reveal">
@@ -363,17 +366,6 @@
               <option>Je ne sais pas encore</option>
             </select>
             <p class="field-error" id="cf-budget-err" hidden></p>
-          </div>
-          <div class="field span-3">
-            <label for="cf-delay">Délai souhaité</label>
-            <select id="cf-delay" name="delay" required aria-describedby="cf-delay-err">
-              <option value="">Choisir…</option>
-              <option>Dès que possible</option>
-              <option>Sous 1 mois</option>
-              <option>Sous 3 mois</option>
-              <option>Pas de date précise</option>
-            </select>
-            <p class="field-error" id="cf-delay-err" hidden></p>
           </div>
 
           <div class="field span-6">

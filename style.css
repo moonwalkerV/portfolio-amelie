@@ -719,3 +719,16 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .hero-brand .star{animation:none;}
 .hero-brand.landed .star{animation:twinkle 3.2s ease-in-out infinite;}
 @media (prefers-reduced-motion:reduce){.hero-brand .i-dot{display:none;}}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto 48px}
+.faq h3{font-size:clamp(22px,2.4vw,30px);font-weight:800;letter-spacing:-0.04em;color:var(--cream);margin-bottom:18px}
+.faq details{border-top:1px solid rgba(255,255,255,.14);padding:16px 0}
+.faq details:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.faq summary{cursor:pointer;font-weight:600;color:var(--cream);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--hot);font-weight:800}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin-top:10px;font-size:15px;line-height:1.65;color:rgba(247,240,248,.74)}
+.do-left h3 a{color:inherit;text-decoration:none}
+.do-left h3 a:hover{color:var(--hot)}
