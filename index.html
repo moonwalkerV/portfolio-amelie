@@ -20,9 +20,8 @@
 <meta name="twitter:title" content="Glimra · Identité visuelle et sites web à Béziers">
 <meta name="twitter:description" content="Identité visuelle et sites web pour entrepreneurs, artisans et commerçants, à Béziers, Montpellier, Narbonne et à distance. Prix annoncés d’avance, devis gratuit.">
 <meta name="twitter:image" content="https://glimra.fr/assets/og.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Gochi+Hand&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/unbounded.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add("js")</script>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -73,7 +72,7 @@
             <span class="slot"></span>
             <div class="inner">
               <div class="f-photo">
-                <picture><source srcset="assets/amelie.webp" type="image/webp"><img src="assets/amelie.jpg" alt="Amélie Philippon"></picture>
+                <picture><source srcset="assets/amelie.webp" type="image/webp"><img src="assets/amelie.jpg" alt="Amélie Philippon" width="640" height="768" loading="lazy" decoding="async"></picture>
               </div>
               <div class="f-info">
                 <div>

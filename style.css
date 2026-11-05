@@ -1,3 +1,8 @@
+/* Polices hébergées (latin) : plus d'appel à Google Fonts */
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400 900;font-display:swap;src:url(/assets/fonts/unbounded.woff2) format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/plus-jakarta-sans.woff2) format('woff2');}
+@font-face{font-family:'Plus Jakarta Sans';font-style:italic;font-weight:500;font-display:swap;src:url(/assets/fonts/plus-jakarta-sans-italic.woff2) format('woff2');}
+@font-face{font-family:'Gochi Hand';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/gochi-hand.woff2) format('woff2');}
 :root{
   --font-display:'Unbounded',sans-serif;
   --font-body:'Plus Jakarta Sans',sans-serif;
