@@ -181,7 +181,7 @@ body::before{
 
 /* face arrière */
 .face.back .inner{padding:16px 16px 12px;}
-.face.back h4{color:var(--ink);font-size:13px;font-weight:700;margin-bottom:8px;}
+.face.back .back-title{font-family:var(--font-display);letter-spacing:-0.03em;color:var(--ink);font-size:13px;font-weight:700;margin-bottom:8px;}
 .b-row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-top:1px solid var(--line-light);}
 .b-row b{display:block;color:var(--ink);font-family:var(--font-display);font-weight:600;font-size:12.5px;letter-spacing:-0.02em;}
 .b-row span{color:#7a7185;font-size:10px;line-height:1.35;display:block;margin-top:2px;}
@@ -673,7 +673,7 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .bio-badge .f-foot{padding:0 16px 14px;}
 .bio-badge .f-pill{font-size:10px;padding:5px 10px;}
 .bio-badge .face.back .inner{padding:22px 20px 16px;}
-.bio-badge .face.back h4{font-size:16px;margin-bottom:12px;}
+.bio-badge .face.back .back-title{font-family:var(--font-display);letter-spacing:-0.03em;font-size:16px;margin-bottom:12px;}
 .bio-badge .b-row{gap:13px;padding:14px 0;}
 .bio-badge .b-row b{font-size:15px;margin-bottom:1px;}
 .bio-badge .b-row span{font-size:12.5px;line-height:1.5;margin-top:4px;}
@@ -696,7 +696,7 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .bio-badge .b-row span{font-size:13.5px;margin-top:0;}
 .bio-badge .chip{width:44px;height:44px;}
 .bio-badge .chip svg{width:22px;height:22px;}
-.bio-badge .face.back h4{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#8a8092;margin-bottom:6px;}
+.bio-badge .face.back .back-title{font-family:var(--font-display);letter-spacing:-0.03em;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#8a8092;margin-bottom:6px;}
 .bio-badge .b-sign{font-size:24px;}
 .bio-text p.bio-zone{font-size:clamp(14px,1.15vw,15.5px);color:#6b5f75;padding-top:6px;}
 .about-zone{font-size:clamp(15px,1.3vw,17px);line-height:1.6;color:rgba(247,240,248,0.78);margin:0 0 28px;max-width:40em;}
