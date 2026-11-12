@@ -659,14 +659,14 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 /* ===== HERO : la marque en grand + badge dans la section « une seule interlocutrice » ===== */
 .hero{align-items:center;justify-content:center;text-align:center;min-height:max(92vh,640px);}
 .hero-in{position:relative;z-index:3;width:100%;display:flex;flex-direction:column;align-items:center;padding-top:110px;padding-bottom:100px;}
-.hero-brand{font-family:var(--font-display);font-weight:800;font-size:clamp(76px,17vw,260px);letter-spacing:-0.06em;line-height:.95;display:flex;align-items:flex-start;gap:.04em;}
-.hero-brand .star{width:.34em;height:.34em;color:var(--hot);flex:none;margin-top:.04em;animation:twinkle 3.2s ease-in-out infinite;}
+.hero-brand{margin:0;line-height:0;color:#fff;}
+.hero-logo{display:block;width:min(86vw,1000px);height:auto;overflow:visible;}
 @keyframes twinkle{0%,100%{transform:scale(1) rotate(0);}50%{transform:scale(1.18) rotate(12deg);}}
 .hero-tag{font-family:var(--font-display);font-weight:700;font-size:clamp(18px,2.6vw,34px);letter-spacing:-0.03em;margin-top:18px;}
 .hero-sub{font-size:clamp(14px,1.3vw,17px);color:rgba(247,240,248,0.72);margin-top:14px;margin-bottom:38px;}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
 .nav-logo{display:inline-flex;align-items:flex-start;gap:2px;}
-.nav-logo .star{width:11px;height:11px;color:var(--hot);margin-top:1px;}
+.nav-mark{display:block;height:24px;width:auto;}
 .bio-badge{display:flex;justify-content:center;align-self:start;margin-top:-150px;}
 .bio-badge .rig{animation:sway 7s ease-in-out infinite;}
 .bio-badge .strap{height:clamp(160px,21vh,200px);-webkit-mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.5) 50px,#000 115px);mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.5) 50px,#000 115px);box-shadow:none;}
@@ -686,12 +686,12 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .bio-badge .chip svg{width:20px;height:20px;}
 .bio-badge .b-sign{font-size:22px;}
 .bio-badge .b-foot>span{font-size:10.5px;}
-@media (prefers-reduced-motion:reduce){.bio-badge .rig,.hero-brand .star{animation:none !important;}}
+@media (prefers-reduced-motion:reduce){.bio-badge .rig{animation:none !important;}}
 .hero .bg-word.bg-word-2,.hero .bg-word.bg-word-3{color:rgba(255,79,158,0.08);}
 .bio-badge{position:relative;}
 .bio-hello{display:block;font-family:var(--font-hand);font-size:clamp(26px,2.8vw,36px);color:#21183B;transform:rotate(-3deg);transform-origin:left center;margin-bottom:10px;line-height:1.1;}
 .f-name{display:inline-flex;align-items:flex-start;gap:3px;}
-.f-name .star{width:.52em;height:.52em;color:var(--hot);flex:none;margin-top:.02em;}
+.f-mark{display:block;height:1.15em;width:auto;}
 .f-info .f-sign{display:block;transform:rotate(-3deg);transform-origin:left center;margin-top:6px;font-size:22px;}
 .bio-badge .f-info .f-sign{font-size:30px;margin-top:8px;}
 .f-info .f-role{margin-top:6px;}
@@ -714,16 +714,12 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .offres-page .nav-links a[aria-current]{opacity:1;font-weight:700}
 .offres-more-all .offres-group{margin-top:48px}
 
-/* Intro du hero : « Glimra » se construit, l'étincelle sort du point du i et se pose */
-.hero-brand .ch{display:inline-block;position:relative;}
-.hero-brand .ch-i .stem{display:block;font-weight:inherit;clip-path:inset(.285em -.2em 0 -.2em);}
-.hero-brand .ch-i .i-dot{position:absolute;left:50%;top:.015em;width:.23em;height:.23em;margin-left:-.115em;border-radius:50%;background:currentColor;}
-.js .hero-brand:not(.go) .ch,.js .hero-brand:not(.go) .star{opacity:0;}
+/* Intro du hero : les lettres de « Glimra » jaillissent, puis l'étoile du logo descend se poser dans le i */
+.hero-logo .lt,.hero-logo .lstar{transform-box:fill-box;transform-origin:50% 100%;}
+.hero-logo .lstar{transform-origin:50% 50%;}
+.js .hero-brand:not(.go) .lt,.js .hero-brand:not(.go) .lstar{opacity:0;}
 .js .hero:not(.go) .typer,.js .hero:not(.go) .hero-tag,.js .hero:not(.go) .hero-sub,.js .hero:not(.go) .hero-btns,.js .hero:not(.go) .scroll-hint{opacity:0;transform:translateY(14px);}
 .hero .hero-tag,.hero .hero-sub,.hero .hero-btns,.hero .scroll-hint{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.25,1);}
-.hero-brand .star{animation:none;}
-.hero-brand.landed .star{animation:twinkle 3.2s ease-in-out infinite;}
-@media (prefers-reduced-motion:reduce){.hero-brand .i-dot{display:none;}}
 
 /* FAQ */
 .faq{max-width:760px;margin:0 auto 48px}
@@ -739,7 +735,7 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .do-left h3 a:hover{color:var(--hot)}
 
 /* Hero : petites étoiles discrètes à la place des mots en filigrane */
-.hero-spark{position:absolute;width:14px;height:14px;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c.7 6.6 4.9 10.8 12 12-7.1 1.2-11.3 5.4-12 12-.7-6.6-4.9-10.8-12-12C7.1 10.8 11.3 6.6 12 0z' fill='%23ff4f9e'/%3E%3C/svg%3E") center/contain no-repeat;animation:twinkle 4s ease-in-out infinite;pointer-events:none;z-index:1}
+.hero-spark{position:absolute;width:14px;height:14px;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='519 318 541 708'%3E%3Cpath transform='matrix(1,0,0,-1,0,1344)' d='M794,1026C814.7,786.7 885.3,723.7 1060,700C913.3,673.3 820.7,632 807,318C786.3,625 705.7,679.3 519,700C701.7,723.7 767.3,784.7 794,1026Z' fill='%23ff4f9e'/%3E%3C/svg%3E") center/contain no-repeat;animation:twinkle 4s ease-in-out infinite;pointer-events:none;z-index:1}
 .hs1{top:22%;left:12%}.hs2{top:30%;right:14%;width:10px;height:10px;animation-delay:.8s}.hs3{top:68%;left:18%;width:9px;height:9px;animation-delay:1.6s}.hs4{top:74%;right:20%;animation-delay:2.2s}.hs5{top:48%;left:6%;width:8px;height:8px;animation-delay:3s}
 @media (prefers-reduced-motion:reduce){.hero-spark{animation:none}}
 .hero-tag{max-width:22em;margin:18px auto 36px;line-height:1.2}

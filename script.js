@@ -100,45 +100,37 @@
     }
   }
 
-  // ---------- Intro du hero : lettres, puis l'étincelle sort du point du « i » ----------
+  // ---------- Intro du hero : les lettres jaillissent, puis l'étoile du logo descend se poser dans le « i » ----------
   (function () {
     var brand = $('.hero-brand');
     if (!brand) return;
-    var star = $('.star', brand), dot = $('.i-dot', brand), chars = $$('.ch', brand);
-    var done = function () { brand.classList.add('go', 'landed'); if (hero) hero.classList.add('go'); };
-    if (reduceMotion || !brand.animate || !star || !dot) { done(); return; }
+    var star = $('.lstar', brand), chars = $$('.lt', brand);
+    var done = function () { brand.classList.add('go'); if (hero) hero.classList.add('go'); };
+    if (reduceMotion || !brand.animate || !star || !chars.length) { done(); return; }
     var run = function () {
-      // mesures faites avant d'afficher quoi que ce soit (le layout ne dépend pas de l'opacité)
-      var dr = dot.getBoundingClientRect(), sr = star.getBoundingClientRect();
-      var dx = (dr.left + dr.width / 2) - (sr.left + sr.width / 2);
-      var dy = (dr.top + dr.height / 2) - (sr.top + sr.height / 2);
-      var em = parseFloat(getComputedStyle(brand).fontSize);
+      var h = brand.getBoundingClientRect().height || 200;
       // 1. les lettres jaillissent, avec un petit rebond
       chars.forEach(function (c, i) {
         c.animate([
-          { opacity: 0, transform: 'translateY(.5em) scale(.6) rotate(-6deg)' },
-          { opacity: 1, transform: 'translateY(-.06em) scale(1.06) rotate(1deg)', offset: .65 },
+          { opacity: 0, transform: 'translateY(' + (h * .45) + 'px) scale(.6) rotate(-6deg)' },
+          { opacity: 1, transform: 'translateY(' + (-h * .05) + 'px) scale(1.06) rotate(1deg)', offset: .65 },
           { opacity: 1, transform: 'none' }
         ], { duration: 750, delay: 150 + i * 90, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
       });
       brand.classList.add('go');
-      var startAt = 150 + (chars.length - 1) * 90 + 600;
-      // 2. le point du i se contracte, l'étincelle naît, s'élève en tournant, puis se pose
-      dot.animate([{ transform: 'scale(1)', offset: 0 }, { transform: 'scale(1.12,.8)', offset: .12 }, { transform: 'scale(.14,.2)', offset: .46 }, { transform: 'scale(1.7,1.5)', offset: .56 }, { transform: 'scale(.82,.9)', offset: .76 }, { transform: 'scale(1)', offset: 1 }],
-        { duration: 900, delay: startAt, easing: 'ease-in-out', fill: 'none' });
+      var startAt = 150 + (chars.length - 1) * 90 + 500;
+      // 2. l'étoile tombe d'en haut en tournant et se pose dans sa fente
       var a = star.animate([
-        { opacity: 0, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.05) rotate(0deg)' },
-        { opacity: 1, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3) rotate(40deg)', offset: .06 },
-        { opacity: 1, transform: 'translate(' + (dx * .7) + 'px,' + (dy - .95 * em) + 'px) scale(1.7) rotate(360deg)', offset: .3 },
-        { opacity: 1, transform: 'translate(' + (dx * .2) + 'px,' + (dy * .2 - .25 * em) + 'px) scale(1.25) rotate(620deg)', offset: .72 },
-        { opacity: 1, transform: 'translate(0,0) scale(1) rotate(720deg)' }
-      ], { duration: 1500, delay: startAt + 410, easing: 'cubic-bezier(.12,.75,.3,1)', fill: 'both' });
+        { opacity: 0, transform: 'translate(' + (h * .5) + 'px,' + (-h * 1.1) + 'px) scale(.2) rotate(-200deg)' },
+        { opacity: 1, transform: 'translate(' + (h * .25) + 'px,' + (-h * .6) + 'px) scale(.9) rotate(-120deg)', offset: .3 },
+        { opacity: 1, transform: 'translate(0,' + (-h * .06) + 'px) scale(1.12) rotate(8deg)', offset: .8 },
+        { opacity: 1, transform: 'none' }
+      ], { duration: 1200, delay: startAt, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'backwards' });
       a.onfinish = function () {
-        brand.classList.add('landed');
-        star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.4) rotate(20deg)' }, { transform: 'scale(1)' }], { duration: 450, easing: 'ease-out' });
+        star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.08)' }, { transform: 'scale(1)' }], { duration: 380, easing: 'ease-out' });
       };
       // 3. le reste du hero apparaît
-      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 1500);
+      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 1100);
     };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { requestAnimationFrame(run); });
     else run();
