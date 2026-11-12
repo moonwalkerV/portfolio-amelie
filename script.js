@@ -137,7 +137,11 @@
         ], { duration: 900, delay: startAt, easing: 'cubic-bezier(.3,.8,.4,1)', fill: 'backwards' });
       });
       a.onfinish = function () {
-        star.animate([{ transform: 'scale(1) rotate(0)' }, { transform: 'scale(1.1) rotate(8deg)' }, { transform: 'scale(1) rotate(0)' }], { duration: 3200, iterations: Infinity, easing: 'ease-in-out' });
+        // scintillement final : l'étoile ET la découpe font exactement le même mouvement, autour du même point
+        var twinkle = [{ transform: 'scale(1) rotate(0)' }, { transform: 'scale(1.1) rotate(8deg)' }, { transform: 'scale(1) rotate(0)' }];
+        var opts = { duration: 3200, iterations: Infinity, easing: 'ease-in-out' };
+        var all = [star].concat(cuts).map(function (el) { return el.animate(twinkle, opts); });
+        all.forEach(function (an) { an.startTime = all[0].startTime; });
       };
       // 3. le reste du hero apparaît
       setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 800);
