@@ -138,10 +138,12 @@
       });
       a.onfinish = function () {
         // scintillement final : l'étoile ET la découpe font exactement le même mouvement, autour du même point
-        var twinkle = [{ transform: 'scale(1) rotate(0)' }, { transform: 'scale(1.1) rotate(8deg)' }, { transform: 'scale(1) rotate(0)' }];
+        var twinkle = function (deg) { return [{ transform: 'scale(1) rotate(0)' }, { transform: 'scale(1.1) rotate(' + deg + 'deg)' }, { transform: 'scale(1) rotate(0)' }]; };
         var opts = { duration: 3200, iterations: Infinity, easing: 'ease-in-out' };
         // lancées dans le même instant : elles restent synchronisées sans réglage supplémentaire
-        [star].concat(cuts).forEach(function (el) { el.animate(twinkle, opts); });
+        star.animate(twinkle(8), opts);
+        // le dessin des découpes est dans un repère inversé (axe vertical retourné) : même rotation, signe opposé
+        cuts.forEach(function (c) { c.animate(twinkle(-8), opts); });
       };
       // 3. le reste du hero apparaît
       setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 800);
