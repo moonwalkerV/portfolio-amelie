@@ -177,6 +177,13 @@
       // 5. ensuite, l'étoile respire doucement, sans jamais quitter sa place
       pop.onfinish = function () {
         star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.07)' }, { transform: 'scale(1)' }], { duration: 3200, iterations: Infinity, easing: 'ease-in-out' });
+        // l'étoile saute avec le nom : même rebond que les lettres (juste derrière le « i »), ajouté à sa respiration
+        star.animate([
+          { transform: 'none' },
+          { transform: 'translateY(' + (-U * .12) + 'px) scale(.95,1.1)', offset: .4, easing: 'ease-in' },
+          { transform: 'translateY(0) scale(1.08,.92)', offset: .72, easing: EASE },
+          { transform: 'none' }
+        ], { duration: 600, delay: 2 * 70 + 40, easing: 'ease-out', composite: 'add' });
       };
       setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 600);
     };
