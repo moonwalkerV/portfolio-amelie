@@ -108,29 +108,30 @@
     var done = function () { brand.classList.add('go'); if (hero) hero.classList.add('go'); };
     if (reduceMotion || !brand.animate || !star || !chars.length) { done(); return; }
     var run = function () {
-      var h = brand.getBoundingClientRect().height || 200;
-      // 1. les lettres jaillissent, avec un petit rebond
+      // Les transformations d'un élément SVG sont en unités du dessin (le logo fait ~4300 unités de large, ~800 de haut)
+      var U = 800;
+      // 1. les lettres montent une à une, avec un petit rebond
       chars.forEach(function (c, i) {
         c.animate([
-          { opacity: 0, transform: 'translateY(' + (h * .45) + 'px) scale(.6) rotate(-6deg)' },
-          { opacity: 1, transform: 'translateY(' + (-h * .05) + 'px) scale(1.06) rotate(1deg)', offset: .65 },
+          { opacity: 0, transform: 'translateY(' + (U * .55) + 'px) scale(.85)' },
+          { opacity: 1, transform: 'translateY(' + (-U * .07) + 'px) scale(1.03)', offset: .65 },
           { opacity: 1, transform: 'none' }
-        ], { duration: 750, delay: 150 + i * 90, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
+        ], { duration: 700, delay: 150 + i * 90, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
       });
       brand.classList.add('go');
-      var startAt = 150 + (chars.length - 1) * 90 + 500;
-      // 2. l'étoile tombe d'en haut en tournant et se pose dans sa fente
+      var startAt = 150 + (chars.length - 1) * 90 + 450;
+      // 2. l'étoile s'allume dans le i : elle naît petite, tourne et grandit avec un léger rebond, puis scintille
       var a = star.animate([
-        { opacity: 0, transform: 'translate(' + (h * .5) + 'px,' + (-h * 1.1) + 'px) scale(.2) rotate(-200deg)' },
-        { opacity: 1, transform: 'translate(' + (h * .25) + 'px,' + (-h * .6) + 'px) scale(.9) rotate(-120deg)', offset: .3 },
-        { opacity: 1, transform: 'translate(0,' + (-h * .06) + 'px) scale(1.12) rotate(8deg)', offset: .8 },
+        { opacity: 0, transform: 'scale(0) rotate(-120deg)' },
+        { opacity: 1, transform: 'scale(1.25) rotate(10deg)', offset: .6 },
+        { opacity: 1, transform: 'scale(.94) rotate(-3deg)', offset: .82 },
         { opacity: 1, transform: 'none' }
-      ], { duration: 1200, delay: startAt, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'backwards' });
+      ], { duration: 900, delay: startAt, easing: 'cubic-bezier(.3,.8,.4,1)', fill: 'backwards' });
       a.onfinish = function () {
-        star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.08)' }, { transform: 'scale(1)' }], { duration: 380, easing: 'ease-out' });
+        star.animate([{ transform: 'scale(1) rotate(0)' }, { transform: 'scale(1.1) rotate(8deg)' }, { transform: 'scale(1) rotate(0)' }], { duration: 3200, iterations: Infinity, easing: 'ease-in-out' });
       };
       // 3. le reste du hero apparaît
-      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 1100);
+      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 800);
     };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { requestAnimationFrame(run); });
     else run();
