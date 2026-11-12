@@ -100,45 +100,92 @@
     }
   }
 
-  // ---------- Intro du hero : lettres, puis l'étincelle sort du point du « i » ----------
+  // ---------- Intro du hero, façon dessin animé : les lettres sautent, l'étoile éclate, les étincelles jaillissent ----------
+  // Principes : anticipation, écrasement/étirement, dépassement, mouvement secondaire. Aucun masque : tout est dessiné en dur.
   (function () {
     var brand = $('.hero-brand');
     if (!brand) return;
-    var star = $('.star', brand), dot = $('.i-dot', brand), chars = $$('.ch', brand);
-    var done = function () { brand.classList.add('go', 'landed'); if (hero) hero.classList.add('go'); };
-    if (reduceMotion || !brand.animate || !star || !dot) { done(); return; }
+    var svg = $('svg', brand), star = $('.lstar', brand), chars = $$('.lt', brand), wholes = $$('.whole', brand);
+    var done = function () { brand.classList.add('go'); if (hero) hero.classList.add('go'); };
+    if (reduceMotion || !brand.animate || !svg || !star || !chars.length) { done(); return; }
     var run = function () {
-      // mesures faites avant d'afficher quoi que ce soit (le layout ne dépend pas de l'opacité)
-      var dr = dot.getBoundingClientRect(), sr = star.getBoundingClientRect();
-      var dx = (dr.left + dr.width / 2) - (sr.left + sr.width / 2);
-      var dy = (dr.top + dr.height / 2) - (sr.top + sr.height / 2);
-      var em = parseFloat(getComputedStyle(brand).fontSize);
-      // 1. les lettres jaillissent, avec un petit rebond
+      // les transformations d'un élément SVG sont en unités du dessin (le logo fait ~4300 unités de large, ~800 de haut)
+      var U = 800, SX = 1567, SY = 445; // SX, SY : centre de l'étoile dans le dessin
+      var EASE = 'cubic-bezier(.3,.7,.4,1)';
+      brand.classList.add('go');
+
+      // 1. chaque lettre tombe d'en haut, s'écrase au sol (squash), rebondit en s'étirant (stretch), puis se pose
+      var STEP = 85, T0 = 150;
       chars.forEach(function (c, i) {
         c.animate([
-          { opacity: 0, transform: 'translateY(.5em) scale(.6) rotate(-6deg)' },
-          { opacity: 1, transform: 'translateY(-.06em) scale(1.06) rotate(1deg)', offset: .65 },
+          { opacity: 0, transform: 'translateY(' + (-U * .9) + 'px) scale(.82,1.28)', offset: 0, easing: 'cubic-bezier(.5,0,.9,.6)' },
+          { opacity: 1, transform: 'translateY(0) scale(.82,1.28)', offset: .38 },
+          { opacity: 1, transform: 'translateY(0) scale(1.18,.78)', offset: .5, easing: EASE },
+          { opacity: 1, transform: 'translateY(' + (-U * .13) + 'px) scale(.94,1.1)', offset: .72, easing: 'ease-in' },
+          { opacity: 1, transform: 'translateY(0) scale(1.06,.93)', offset: .86, easing: EASE },
           { opacity: 1, transform: 'none' }
-        ], { duration: 750, delay: 150 + i * 90, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
+        ], { duration: 900, delay: T0 + i * STEP, fill: 'backwards' });
       });
-      brand.classList.add('go');
-      var startAt = 150 + (chars.length - 1) * 90 + 600;
-      // 2. le point du i se contracte, l'étincelle naît, s'élève en tournant, puis se pose
-      dot.animate([{ transform: 'scale(1)', offset: 0 }, { transform: 'scale(1.12,.8)', offset: .12 }, { transform: 'scale(.14,.2)', offset: .46 }, { transform: 'scale(1.7,1.5)', offset: .56 }, { transform: 'scale(.82,.9)', offset: .76 }, { transform: 'scale(1)', offset: 1 }],
-        { duration: 900, delay: startAt, easing: 'ease-in-out', fill: 'none' });
-      var a = star.animate([
-        { opacity: 0, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.05) rotate(0deg)' },
-        { opacity: 1, transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3) rotate(40deg)', offset: .06 },
-        { opacity: 1, transform: 'translate(' + (dx * .7) + 'px,' + (dy - .95 * em) + 'px) scale(1.7) rotate(360deg)', offset: .3 },
-        { opacity: 1, transform: 'translate(' + (dx * .2) + 'px,' + (dy * .2 - .25 * em) + 'px) scale(1.25) rotate(620deg)', offset: .72 },
-        { opacity: 1, transform: 'translate(0,0) scale(1) rotate(720deg)' }
-      ], { duration: 1500, delay: startAt + 410, easing: 'cubic-bezier(.12,.75,.3,1)', fill: 'both' });
-      a.onfinish = function () {
-        brand.classList.add('landed');
-        star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.4) rotate(20deg)' }, { transform: 'scale(1)' }], { duration: 450, easing: 'ease-out' });
+
+      var startAt = T0 + (chars.length - 1) * STEP + 800;
+
+      // 2. anticipation puis éclat : l'étoile apparaît, grossit trop, se resserre, rebondit et se pose
+      var pop = star.animate([
+        { opacity: 0, transform: 'scale(0) rotate(-200deg)', offset: 0 },
+        { opacity: 1, transform: 'scale(1.55) rotate(18deg)', offset: .5, easing: 'ease-in-out' },
+        { opacity: 1, transform: 'scale(.82) rotate(-6deg)', offset: .72, easing: 'ease-in-out' },
+        { opacity: 1, transform: 'scale(1.12) rotate(2deg)', offset: .88, easing: 'ease-in-out' },
+        { opacity: 1, transform: 'none' }
+      ], { duration: 950, delay: startAt, easing: EASE, fill: 'backwards' });
+
+      // la lettre entière s'efface sous l'étoile : la fente du l et la pointe du i apparaissent en fondu
+      wholes.forEach(function (w) {
+        w.animate([{ opacity: 1 }, { opacity: 1, offset: .35 }, { opacity: 0 }], { duration: 700, delay: startAt + 250, fill: 'both' });
+      });
+
+      // 3. mouvement secondaire : une gerbe d'étincelles part de l'étoile
+      var NS = 'http://www.w3.org/2000/svg', sparks = [];
+      var rays = [[-330, -250, 62, '#F6CFE0'], [310, -280, 48, '#FFFFFF'], [-420, 20, 40, '#D9CCFB'], [400, 60, 66, '#F6CFE0'],
+                  [-250, 260, 44, '#FFFFFF'], [250, 300, 56, '#D9CCFB'], [10, -420, 52, '#F6CFE0'], [-120, -380, 34, '#FFFFFF']];
+      rays.forEach(function (r) {
+        var k = r[2], p = document.createElementNS(NS, 'path');
+        p.setAttribute('d', 'M0,' + (-k) + 'C' + (k * .12) + ',' + (-k * .3) + ' ' + (k * .3) + ',' + (-k * .12) + ' ' + k + ',0C' + (k * .3) + ',' + (k * .12) + ' ' + (k * .12) + ',' + (k * .3) + ' 0,' + k + 'C' + (-k * .12) + ',' + (k * .3) + ' ' + (-k * .3) + ',' + (k * .12) + ' ' + (-k) + ',0C' + (-k * .3) + ',' + (-k * .12) + ' ' + (-k * .12) + ',' + (-k * .3) + ' 0,' + (-k) + 'Z');
+        p.setAttribute('fill', r[3]);
+        p.style.opacity = '0';
+        svg.appendChild(p); sparks.push([p, r]);
+      });
+      sparks.forEach(function (sp, i) {
+        var p = sp[0], r = sp[1];
+        p.animate([
+          { opacity: 0, transform: 'translate(' + SX + 'px,' + SY + 'px)' },
+          { opacity: 1, transform: 'translate(' + (SX + r[0] * .7) + 'px,' + (SY + r[1] * .7) + 'px)', offset: .35 },
+          { opacity: 0, transform: 'translate(' + (SX + r[0]) + 'px,' + (SY + r[1]) + 'px)' }
+        ], { duration: 800, delay: startAt + 300 + i * 25, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'both' });
+      });
+
+      // 4. suite de l'action : une petite « vague » de sauts sur les lettres
+      var waveAt = startAt + 950;
+      chars.forEach(function (c, i) {
+        c.animate([
+          { transform: 'none' },
+          { transform: 'translateY(' + (-U * .075) + 'px) scale(.97,1.05)', offset: .4, easing: 'ease-in' },
+          { transform: 'translateY(0) scale(1.03,.96)', offset: .72, easing: EASE },
+          { transform: 'none' }
+        ], { duration: 560, delay: waveAt + i * 70, easing: 'ease-out' });
+      });
+
+      // 5. ensuite, l'étoile respire doucement, sans jamais quitter sa place
+      pop.onfinish = function () {
+        star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.07)' }, { transform: 'scale(1)' }], { duration: 3200, iterations: Infinity, easing: 'ease-in-out' });
+        // l'étoile saute avec le nom : même rebond que les lettres (juste derrière le « i »), ajouté à sa respiration
+        star.animate([
+          { transform: 'none' },
+          { transform: 'translateY(' + (-U * .12) + 'px) scale(.95,1.1)', offset: .4, easing: 'ease-in' },
+          { transform: 'translateY(0) scale(1.08,.92)', offset: .72, easing: EASE },
+          { transform: 'none' }
+        ], { duration: 600, delay: 2 * 70 + 40, easing: 'ease-out', composite: 'add' });
       };
-      // 3. le reste du hero apparaît
-      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 1500);
+      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 600);
     };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { requestAnimationFrame(run); });
     else run();
