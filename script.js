@@ -104,7 +104,7 @@
   (function () {
     var brand = $('.hero-brand');
     if (!brand) return;
-    var star = $('.lstar', brand), chars = $$('.lt', brand);
+    var star = $('.lstar', brand), chars = $$('.lt', brand), cuts = $$('.cut', brand);
     var done = function () { brand.classList.add('go'); if (hero) hero.classList.add('go'); };
     if (reduceMotion || !brand.animate || !star || !chars.length) { done(); return; }
     var run = function () {
@@ -127,6 +127,15 @@
         { opacity: 1, transform: 'scale(.94) rotate(-3deg)', offset: .82 },
         { opacity: 1, transform: 'none' }
       ], { duration: 900, delay: startAt, easing: 'cubic-bezier(.3,.8,.4,1)', fill: 'backwards' });
+      // la découpe dans les lettres (l et i) se creuse avec l'étoile, au même rythme
+      cuts.forEach(function (c) {
+        c.animate([
+          { transform: 'scale(0)' },
+          { transform: 'scale(1.08)', offset: .6 },
+          { transform: 'scale(.97)', offset: .82 },
+          { transform: 'none' }
+        ], { duration: 900, delay: startAt, easing: 'cubic-bezier(.3,.8,.4,1)', fill: 'backwards' });
+      });
       a.onfinish = function () {
         star.animate([{ transform: 'scale(1) rotate(0)' }, { transform: 'scale(1.1) rotate(8deg)' }, { transform: 'scale(1) rotate(0)' }], { duration: 3200, iterations: Infinity, easing: 'ease-in-out' });
       };
