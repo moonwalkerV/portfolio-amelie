@@ -100,51 +100,85 @@
     }
   }
 
-  // ---------- Intro du hero : les lettres jaillissent, puis l'étoile du logo descend se poser dans le « i » ----------
+  // ---------- Intro du hero, façon dessin animé : les lettres sautent, l'étoile éclate, les étincelles jaillissent ----------
+  // Principes : anticipation, écrasement/étirement, dépassement, mouvement secondaire. Aucun masque : tout est dessiné en dur.
   (function () {
     var brand = $('.hero-brand');
     if (!brand) return;
-    var star = $('.lstar', brand), chars = $$('.lt', brand), cuts = $$('.cut', brand);
+    var svg = $('svg', brand), star = $('.lstar', brand), chars = $$('.lt', brand), wholes = $$('.whole', brand);
     var done = function () { brand.classList.add('go'); if (hero) hero.classList.add('go'); };
-    if (reduceMotion || !brand.animate || !star || !chars.length) { done(); return; }
+    if (reduceMotion || !brand.animate || !svg || !star || !chars.length) { done(); return; }
     var run = function () {
-      // Les transformations d'un élément SVG sont en unités du dessin (le logo fait ~4300 unités de large, ~800 de haut)
-      var U = 800;
-      // 1. les lettres montent une à une, avec un petit rebond
+      // les transformations d'un élément SVG sont en unités du dessin (le logo fait ~4300 unités de large, ~800 de haut)
+      var U = 800, SX = 1567, SY = 445; // SX, SY : centre de l'étoile dans le dessin
+      var EASE = 'cubic-bezier(.3,.7,.4,1)';
+      brand.classList.add('go');
+
+      // 1. chaque lettre tombe d'en haut, s'écrase au sol (squash), rebondit en s'étirant (stretch), puis se pose
+      var STEP = 85, T0 = 150;
       chars.forEach(function (c, i) {
         c.animate([
-          { opacity: 0, transform: 'translateY(' + (U * .55) + 'px) scale(.85)' },
-          { opacity: 1, transform: 'translateY(' + (-U * .07) + 'px) scale(1.03)', offset: .65 },
+          { opacity: 0, transform: 'translateY(' + (-U * .9) + 'px) scale(.82,1.28)', offset: 0, easing: 'cubic-bezier(.5,0,.9,.6)' },
+          { opacity: 1, transform: 'translateY(0) scale(.82,1.28)', offset: .38 },
+          { opacity: 1, transform: 'translateY(0) scale(1.18,.78)', offset: .5, easing: EASE },
+          { opacity: 1, transform: 'translateY(' + (-U * .13) + 'px) scale(.94,1.1)', offset: .72, easing: 'ease-in' },
+          { opacity: 1, transform: 'translateY(0) scale(1.06,.93)', offset: .86, easing: EASE },
           { opacity: 1, transform: 'none' }
-        ], { duration: 700, delay: 150 + i * 90, easing: 'cubic-bezier(.3,1.3,.5,1)', fill: 'backwards' });
+        ], { duration: 900, delay: T0 + i * STEP, fill: 'backwards' });
       });
-      brand.classList.add('go');
-      var startAt = 150 + (chars.length - 1) * 90 + 450;
-      // 2. l'étoile s'allume dans le i : elle naît petite, tourne et grandit avec un léger rebond, puis scintille
-      var a = star.animate([
-        { opacity: 0, transform: 'scale(0) rotate(-120deg)' },
-        { opacity: 1, transform: 'scale(1.25) rotate(10deg)', offset: .6 },
-        { opacity: 1, transform: 'scale(.94) rotate(-3deg)', offset: .82 },
+
+      var startAt = T0 + (chars.length - 1) * STEP + 800;
+
+      // 2. anticipation puis éclat : l'étoile apparaît, grossit trop, se resserre, rebondit et se pose
+      var pop = star.animate([
+        { opacity: 0, transform: 'scale(0) rotate(-200deg)', offset: 0 },
+        { opacity: 1, transform: 'scale(1.55) rotate(18deg)', offset: .5, easing: 'ease-in-out' },
+        { opacity: 1, transform: 'scale(.82) rotate(-6deg)', offset: .72, easing: 'ease-in-out' },
+        { opacity: 1, transform: 'scale(1.12) rotate(2deg)', offset: .88, easing: 'ease-in-out' },
         { opacity: 1, transform: 'none' }
-      ], { duration: 900, delay: startAt, easing: 'cubic-bezier(.3,.8,.4,1)', fill: 'backwards' });
-      // la découpe dans les lettres (l et i) se creuse avec l'étoile, au même rythme
-      cuts.forEach(function (c) {
-        c.animate([
-          { transform: 'scale(0)' },
-          { transform: 'scale(1.08)', offset: .6 },
-          { transform: 'scale(.97)', offset: .82 },
-          { transform: 'none' }
-        ], { duration: 900, delay: startAt, easing: 'cubic-bezier(.3,.8,.4,1)', fill: 'backwards' });
+      ], { duration: 950, delay: startAt, easing: EASE, fill: 'backwards' });
+
+      // la lettre entière s'efface sous l'étoile : la fente du l et la pointe du i apparaissent en fondu
+      wholes.forEach(function (w) {
+        w.animate([{ opacity: 1 }, { opacity: 1, offset: .35 }, { opacity: 0 }], { duration: 700, delay: startAt + 250, fill: 'both' });
       });
-      a.onfinish = function () {
-        // scintillement : l'étoile et la découpe grossissent et rétrécissent ENSEMBLE, autour du même point, sans rotation
-        // (une rotation décollerait la découpe du bord des lettres et ferait apparaître des coupures)
-        var twinkle = [{ transform: 'scale(1)' }, { transform: 'scale(1.1)' }, { transform: 'scale(1)' }];
-        var opts = { duration: 3200, iterations: Infinity, easing: 'ease-in-out' };
-        [star].concat(cuts).forEach(function (el) { el.animate(twinkle, opts); });
+
+      // 3. mouvement secondaire : une gerbe d'étincelles part de l'étoile
+      var NS = 'http://www.w3.org/2000/svg', sparks = [];
+      var rays = [[-330, -250, 62, '#F6CFE0'], [310, -280, 48, '#FFFFFF'], [-420, 20, 40, '#D9CCFB'], [400, 60, 66, '#F6CFE0'],
+                  [-250, 260, 44, '#FFFFFF'], [250, 300, 56, '#D9CCFB'], [10, -420, 52, '#F6CFE0'], [-120, -380, 34, '#FFFFFF']];
+      rays.forEach(function (r) {
+        var k = r[2], p = document.createElementNS(NS, 'path');
+        p.setAttribute('d', 'M0,' + (-k) + 'C' + (k * .12) + ',' + (-k * .3) + ' ' + (k * .3) + ',' + (-k * .12) + ' ' + k + ',0C' + (k * .3) + ',' + (k * .12) + ' ' + (k * .12) + ',' + (k * .3) + ' 0,' + k + 'C' + (-k * .12) + ',' + (k * .3) + ' ' + (-k * .3) + ',' + (k * .12) + ' ' + (-k) + ',0C' + (-k * .3) + ',' + (-k * .12) + ' ' + (-k * .12) + ',' + (-k * .3) + ' 0,' + (-k) + 'Z');
+        p.setAttribute('fill', r[3]);
+        p.style.opacity = '0';
+        svg.appendChild(p); sparks.push([p, r]);
+      });
+      sparks.forEach(function (sp, i) {
+        var p = sp[0], r = sp[1];
+        p.animate([
+          { opacity: 0, transform: 'translate(' + SX + 'px,' + SY + 'px)' },
+          { opacity: 1, transform: 'translate(' + (SX + r[0] * .7) + 'px,' + (SY + r[1] * .7) + 'px)', offset: .35 },
+          { opacity: 0, transform: 'translate(' + (SX + r[0]) + 'px,' + (SY + r[1]) + 'px)' }
+        ], { duration: 800, delay: startAt + 300 + i * 25, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'both' });
+      });
+
+      // 4. suite de l'action : une petite « vague » de sauts sur les lettres
+      var waveAt = startAt + 950;
+      chars.forEach(function (c, i) {
+        c.animate([
+          { transform: 'none' },
+          { transform: 'translateY(' + (-U * .075) + 'px) scale(.97,1.05)', offset: .4, easing: 'ease-in' },
+          { transform: 'translateY(0) scale(1.03,.96)', offset: .72, easing: EASE },
+          { transform: 'none' }
+        ], { duration: 560, delay: waveAt + i * 70, easing: 'ease-out' });
+      });
+
+      // 5. ensuite, l'étoile respire doucement, sans jamais quitter sa place
+      pop.onfinish = function () {
+        star.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.07)' }, { transform: 'scale(1)' }], { duration: 3200, iterations: Infinity, easing: 'ease-in-out' });
       };
-      // 3. le reste du hero apparaît
-      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 800);
+      setTimeout(function () { if (hero) hero.classList.add('go'); }, startAt + 600);
     };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { requestAnimationFrame(run); });
     else run();

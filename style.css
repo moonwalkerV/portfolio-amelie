@@ -714,10 +714,11 @@ mark.todo{background:#ffe94d;color:#1a1420;font-weight:700;padding:2px 7px;borde
 .offres-page .nav-links a[aria-current]{opacity:1;font-weight:700}
 .offres-more-all .offres-group{margin-top:48px}
 
-/* Intro du hero : les lettres de « Glimra » jaillissent, puis l'étoile du logo descend se poser dans le i */
+/* Intro du hero : voir script.js. Tout est dessiné en dur dans le SVG (pas de masque), l'état final est le logo complet */
 .hero-logo .lt,.hero-logo .lstar{transform-box:fill-box;transform-origin:50% 100%;}
-/* l'étoile pivote autour de son centre (là où se croisent ses branches), le même point que la découpe */
+/* l'étoile pivote autour de son centre (là où se croisent ses branches) */
 .hero-logo .lstar{transform-origin:288px 326px;}
+.hero-logo .whole{opacity:0;}
 .js .hero-brand:not(.go) .lt,.js .hero-brand:not(.go) .lstar{opacity:0;}
 .js .hero:not(.go) .typer,.js .hero:not(.go) .hero-tag,.js .hero:not(.go) .hero-sub,.js .hero:not(.go) .hero-btns,.js .hero:not(.go) .scroll-hint{opacity:0;transform:translateY(14px);}
 .hero .hero-tag,.hero .hero-sub,.hero .hero-btns,.hero .scroll-hint{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.25,1);}
