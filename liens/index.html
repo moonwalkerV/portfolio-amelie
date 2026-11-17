@@ -39,8 +39,15 @@ ul{list-style:none;margin-top:28px;display:grid;gap:12px}
 .lk:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
 .lk-main{background:var(--rose);border-color:var(--rose);color:var(--vn)}
 .lk-main:hover{background:#f283b5}
-.ic{flex:none;width:42px;height:42px;border-radius:50%;border:1.6px solid currentColor;display:grid;place-items:center}
-.ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ic{flex:none;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.ic svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ic-cal{background:#21183B}
+.ic-site{background:#21183B;overflow:hidden;outline:1.5px solid rgba(247,240,248,.3)}
+.ic-site svg{width:100%;height:100%;stroke:none}
+.ic-insta{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+.ic-in{background:#0A66C2}
+.ic-mail{background:#F7F0F8}
+.ic-mail svg{stroke:#21183B}
 .tx{flex:1;display:grid;gap:1px}
 .tx strong{font-family:'Unbounded',sans-serif;font-weight:700;font-size:14.5px;line-height:1.25}
 .tx small{font-size:13.5px;opacity:.8}
@@ -65,23 +72,23 @@ footer a{color:inherit}
   <span class="hand">Ravie de vous rencontrer&nbsp;!</span>
   <ul>
       <li><a class="lk lk-main" href="https://cal.com/amelie-zzqj3n/30min" target="_blank" rel="noopener">
-        <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+        <span class="ic ic-cal"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
         <span class="tx"><strong>Réserver un appel découverte</strong><small>30 minutes, gratuit</small></span>
         <span class="ar" aria-hidden="true">→</span></a></li>
       <li><a class="lk" href="/">
-        <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span>
+        <span class="ic ic-site"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-100.0 53.0 1440.0 1440.0" style="fill-rule:evenodd;clip-rule:evenodd"><rect x="-100.0" y="53.0" width="1440.0" height="1440.0" rx="259.2" fill="rgb(33,24,59)"/><g transform="matrix(1,0,0,-1,122,1187)"><path d="M515,233L695.221,233C674.818,213.103 648.911,197.769 617.5,187C582.5,175 542.333,169 497,169C450.333,169 409.833,176.667 375.5,192C341.167,207.333 314.833,230.333 296.5,261C278.167,291.667 269,329.667 269,375C269,420.333 277.333,457.667 294,487C310.667,516.333 334.5,538.333 365.5,553C396.5,567.667 433.333,575 476,575C510.667,575 542,570.833 570,562.5C598,554.167 621.5,542.167 640.5,526.5C659.5,510.833 672,492 678,470L767.68,470C754.125,521.207 741.838,547.196 713.82,583.433C654.126,660.64 596.474,682.555 453.722,701.24C451.459,701.536 592.72,712.032 636.656,749.773C596.244,757.924 509.026,773 451,768C389.893,762.735 355.5,758.5 302.5,741.5C249.5,724.5 202.833,699.5 162.5,666.5C122.167,633.5 90.833,592.667 68.5,544C46.167,495.333 35,439 35,375C35,311 46.167,254.667 68.5,206C90.833,157.333 121.667,116.5 161,83.5C200.333,50.5 245.667,25.5 297,8.5C348.333,-8.5 403.333,-17 462,-17C524.667,-17 579.333,-7.833 626,10.5C672.667,28.833 711.333,54.167 742,86.5C743.175,87.738 744.339,88.984 745.493,90.236L756,0L919,0L919,395C919,395 829.055,395.271 828.687,394.642C820.929,381.366 807.109,271 807.109,271C807.109,271 793.418,378.979 783.709,394.623C783.308,395.27 515,395 515,395L515,233ZM844.32,470L912,470C905.859,503.392 895.298,534.575 880.318,563.547C861.179,537.17 853.846,505.988 844.32,470Z" style="fill:rgb(255,255,255);fill-rule:nonzero;"/></g><g transform="matrix(1,0,0,-1,122,1187)"><path d="M794,1026C814.667,786.667 885.333,723.667 1060,700C913.333,673.333 821.667,579 807,326C782.333,578 705.667,679.333 519,700C701.667,723.667 767.333,784.667 794,1026Z" style="fill:rgb(236,114,169);fill-rule:nonzero;"/></g></svg></span>
         <span class="tx"><strong>Découvrir mon site</strong><small>Offres, projets, tarifs</small></span>
         <span class="ar" aria-hidden="true">→</span></a></li>
       <li><a class="lk" href="https://www.instagram.com/glimra.studio" target="_blank" rel="noopener">
-        <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg></span>
+        <span class="ic ic-insta"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.8"/><circle cx="16.9" cy="7.1" r=".9" fill="#fff" stroke="none"/></svg></span>
         <span class="tx"><strong>Instagram</strong><small>@glimra.studio</small></span>
         <span class="ar" aria-hidden="true">→</span></a></li>
       <li><a class="lk" href="https://www.linkedin.com/in/am%C3%A9lie-philippon-a5b28523a/" target="_blank" rel="noopener">
-        <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5v6M8 7.5v.01M12 16.5v-6M12 13c0-1.6 1-2.5 2.3-2.5S16.5 11.4 16.5 13v3.5"/></svg></span>
+        <span class="ic ic-in"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" stroke="none" d="M6.2 9.4h2.9V19H6.2zM7.65 5a1.68 1.68 0 1 1 0 3.36 1.68 1.68 0 0 1 0-3.36zM10.9 9.4h2.78v1.31h.04c.39-.73 1.33-1.5 2.74-1.5 2.93 0 3.47 1.93 3.47 4.43V19h-2.9v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55V19h-2.88z"/></svg></span>
         <span class="tx"><strong>LinkedIn</strong><small>Amélie Philippon</small></span>
         <span class="ar" aria-hidden="true">→</span></a></li>
       <li><a class="lk" href="mailto:contact@glimra.fr">
-        <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
+        <span class="ic ic-mail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
         <span class="tx"><strong>M’écrire</strong><small>contact@glimra.fr</small></span>
         <span class="ar" aria-hidden="true">→</span></a></li>
   </ul>
